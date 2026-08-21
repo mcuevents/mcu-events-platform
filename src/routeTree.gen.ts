@@ -14,9 +14,13 @@ import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EventsIndexRouteImport } from './routes/events/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as EventsSlugRouteImport } from './routes/events/$slug'
 import { Route as AppRegistrationsRouteImport } from './routes/app/registrations'
+import { Route as AppEventsRouteImport } from './routes/app/events'
 import { Route as AppEnquiriesRouteImport } from './routes/app/enquiries'
 
 const ServicesRoute = ServicesRouteImport.update({
@@ -44,9 +48,19 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsIndexRoute = EventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
@@ -54,9 +68,19 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const EventsSlugRoute = EventsSlugRouteImport.update({
+  id: '/events/$slug',
+  path: '/events/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppRegistrationsRoute = AppRegistrationsRouteImport.update({
   id: '/registrations',
   path: '/registrations',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEventsRoute = AppEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => AppRoute,
 } as any)
 const AppEnquiriesRoute = AppEnquiriesRouteImport.update({
@@ -67,79 +91,106 @@ const AppEnquiriesRoute = AppEnquiriesRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/app': typeof AppRouteWithChildren
   '/contact': typeof ContactRoute
   '/register': typeof RegisterRoute
   '/services': typeof ServicesRoute
   '/app/enquiries': typeof AppEnquiriesRoute
+  '/app/events': typeof AppEventsRoute
   '/app/registrations': typeof AppRegistrationsRoute
+  '/events/$slug': typeof EventsSlugRoute
   '/app/': typeof AppIndexRoute
+  '/events/': typeof EventsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/register': typeof RegisterRoute
   '/services': typeof ServicesRoute
   '/app/enquiries': typeof AppEnquiriesRoute
+  '/app/events': typeof AppEventsRoute
   '/app/registrations': typeof AppRegistrationsRoute
+  '/events/$slug': typeof EventsSlugRoute
   '/app': typeof AppIndexRoute
+  '/events': typeof EventsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/app': typeof AppRouteWithChildren
   '/contact': typeof ContactRoute
   '/register': typeof RegisterRoute
   '/services': typeof ServicesRoute
   '/app/enquiries': typeof AppEnquiriesRoute
+  '/app/events': typeof AppEventsRoute
   '/app/registrations': typeof AppRegistrationsRoute
+  '/events/$slug': typeof EventsSlugRoute
   '/app/': typeof AppIndexRoute
+  '/events/': typeof EventsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/admin'
     | '/app'
     | '/contact'
     | '/register'
     | '/services'
     | '/app/enquiries'
+    | '/app/events'
     | '/app/registrations'
+    | '/events/$slug'
     | '/app/'
+    | '/events/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/admin'
     | '/contact'
     | '/register'
     | '/services'
     | '/app/enquiries'
+    | '/app/events'
     | '/app/registrations'
+    | '/events/$slug'
     | '/app'
+    | '/events'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/admin'
     | '/app'
     | '/contact'
     | '/register'
     | '/services'
     | '/app/enquiries'
+    | '/app/events'
     | '/app/registrations'
+    | '/events/$slug'
     | '/app/'
+    | '/events/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   AppRoute: typeof AppRouteWithChildren
   ContactRoute: typeof ContactRoute
   RegisterRoute: typeof RegisterRoute
   ServicesRoute: typeof ServicesRoute
+  EventsSlugRoute: typeof EventsSlugRoute
+  EventsIndexRoute: typeof EventsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -179,11 +230,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/': {
+      id: '/events/'
+      path: '/events'
+      fullPath: '/events/'
+      preLoaderRoute: typeof EventsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/': {
@@ -193,11 +258,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/events/$slug': {
+      id: '/events/$slug'
+      path: '/events/$slug'
+      fullPath: '/events/$slug'
+      preLoaderRoute: typeof EventsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/registrations': {
       id: '/app/registrations'
       path: '/registrations'
       fullPath: '/app/registrations'
       preLoaderRoute: typeof AppRegistrationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/events': {
+      id: '/app/events'
+      path: '/events'
+      fullPath: '/app/events'
+      preLoaderRoute: typeof AppEventsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/enquiries': {
@@ -212,12 +291,14 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppEnquiriesRoute: typeof AppEnquiriesRoute
+  AppEventsRoute: typeof AppEventsRoute
   AppRegistrationsRoute: typeof AppRegistrationsRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppEnquiriesRoute: AppEnquiriesRoute,
+  AppEventsRoute: AppEventsRoute,
   AppRegistrationsRoute: AppRegistrationsRoute,
   AppIndexRoute: AppIndexRoute,
 }
@@ -226,11 +307,14 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   AppRoute: AppRouteWithChildren,
   ContactRoute: ContactRoute,
   RegisterRoute: RegisterRoute,
   ServicesRoute: ServicesRoute,
+  EventsSlugRoute: EventsSlugRoute,
+  EventsIndexRoute: EventsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

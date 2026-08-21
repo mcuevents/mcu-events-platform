@@ -11,6 +11,7 @@
  */
 import { useState, useEffect, useCallback } from 'react'
 import type { ReactNode } from 'react'
+import { Link, useLocation, useNavigate } from '@tanstack/react-router'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -20,11 +21,15 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import {
+  CalendarDays,
+  FileText,
   LayoutDashboard,
   LogOut,
   PanelLeft,
+  Users,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { supabase } from '@/lib/supabase'
 
 const SIDEBAR_KEY = 'sidebar_collapsed'
 
@@ -32,32 +37,34 @@ interface NavItemDef {
   href: string
   icon: ReactNode
   label: string
-  active?: boolean
 }
 
 // Every href here MUST have a real route file, and every page you add under
 // `src/routes/app/` should get an entry here — a nav link with no route ships a
-// 404. Only the shipped dashboard route is listed; add yours as you create them,
-// e.g. `src/routes/app/items.tsx` → { href: '/app/items', label: 'Items' }.
+// 404. Add yours as you create them, e.g. `src/routes/app/items.tsx` →
+// { href: '/app/items', label: 'Items' }.
 const NAV_ITEMS: NavItemDef[] = [
-  { href: '/app', icon: <LayoutDashboard className="h-4 w-4" />, label: 'Dashboard', active: true },
+  { href: '/app', icon: <LayoutDashboard className="h-4 w-4" />, label: 'Dashboard' },
+  { href: '/app/events', icon: <CalendarDays className="h-4 w-4" />, label: 'Events' },
+  { href: '/app/registrations', icon: <Users className="h-4 w-4" />, label: 'Registrations' },
+  { href: '/app/enquiries', icon: <FileText className="h-4 w-4" />, label: 'Enquiries' },
 ]
 
-function NavItem({ item, collapsed }: { item: NavItemDef; collapsed: boolean }) {
+function NavItem({ item, collapsed, active }: { item: NavItemDef; collapsed: boolean; active: boolean }) {
   const link = (
-    <a
-      href={item.href}
+    <Link
+      to={item.href}
       className={cn(
         'flex items-center gap-2.5 rounded-md text-sm transition-colors cursor-pointer',
         collapsed ? 'justify-center w-8 h-8 mx-auto' : 'px-3 py-2 w-full',
-        item.active
+        active
           ? 'bg-accent text-foreground font-medium'
           : 'text-muted-foreground hover:bg-accent hover:text-foreground'
       )}
     >
       <span className="shrink-0">{item.icon}</span>
       {!collapsed && <span className="truncate">{item.label}</span>}
-    </a>
+    </Link>
   )
   if (!collapsed) return link
   return (
@@ -73,9 +80,18 @@ export function AppSidebarShell() {
   // Reading localStorage in the initializer makes the client's first render
   // differ from the server markup → hydration mismatch on hard refresh.
   const [collapsed, setCollapsed] = useState(false)
+  const [userEmail, setUserEmail] = useState<string | null>(null)
+  const location = useLocation()
+  const navigate = useNavigate()
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- mount-time restore of a persisted preference; reading localStorage in the useState initializer causes an SSR hydration mismatch
     if (localStorage.getItem(SIDEBAR_KEY) === 'true') setCollapsed(true)
+  }, [])
+
+  useEffect(() => {
+    if (!supabase) return
+    supabase.auth.getUser().then(({ data }) => setUserEmail(data.user?.email ?? null))
   }, [])
 
   const toggle = useCallback(() => {
@@ -85,6 +101,11 @@ export function AppSidebarShell() {
       return next
     })
   }, [])
+
+  const signOut = useCallback(async () => {
+    if (supabase) await supabase.auth.signOut()
+    navigate({ to: '/admin' })
+  }, [navigate])
 
   return (
     <TooltipProvider delayDuration={0}>
@@ -104,10 +125,10 @@ export function AppSidebarShell() {
         >
           {!collapsed && (
             <>
-              <div className="flex items-center justify-center h-7 w-7 rounded-md bg-primary text-primary-foreground text-xs font-bold shrink-0">
-                A
+              <div className="flex items-center justify-center h-7 w-7 rounded-md bg-primary text-primary-foreground text-xs font-bold shrink-0 font-serif">
+                M
               </div>
-              <span className="flex-1 font-semibold text-sm truncate">App</span>
+              <span className="flex-1 font-semibold text-sm truncate">MCU Events</span>
             </>
           )}
           <Tooltip>
@@ -140,7 +161,12 @@ export function AppSidebarShell() {
             </p>
           )}
           {NAV_ITEMS.map(item => (
-            <NavItem key={item.href} item={item} collapsed={collapsed} />
+            <NavItem
+              key={item.href}
+              item={item}
+              collapsed={collapsed}
+              active={item.href === '/app' ? location.pathname === '/app' : location.pathname.startsWith(item.href)}
+            />
           ))}
         </div>
 
@@ -157,24 +183,24 @@ export function AppSidebarShell() {
               <TooltipTrigger asChild>
                 <button className="flex items-center justify-center h-8 w-8 rounded-md hover:bg-accent transition-colors cursor-pointer">
                   <Avatar className="h-6 w-6 shrink-0">
-                    <AvatarFallback className="text-[10px] bg-muted">U</AvatarFallback>
+                    <AvatarFallback className="text-[10px] bg-muted">{userEmail?.[0]?.toUpperCase() ?? 'U'}</AvatarFallback>
                   </Avatar>
                 </button>
               </TooltipTrigger>
-              <TooltipContent side="right">User · user@example.com</TooltipContent>
+              <TooltipContent side="right">{userEmail ? `Signed in · ${userEmail}` : 'Signed in'}</TooltipContent>
             </Tooltip>
           ) : (
-            <button className="flex items-center gap-2 rounded-md hover:bg-accent transition-colors cursor-pointer w-full px-2 py-1.5">
+            <div className="flex items-center gap-2 rounded-md w-full px-2 py-1.5">
               <Avatar className="h-6 w-6 shrink-0">
-                <AvatarFallback className="text-[10px] bg-muted">U</AvatarFallback>
+                <AvatarFallback className="text-[10px] bg-muted">{userEmail?.[0]?.toUpperCase() ?? 'U'}</AvatarFallback>
               </Avatar>
               <div className="flex-1 min-w-0 text-left">
-                <p className="text-xs font-medium leading-tight truncate">User</p>
+                <p className="text-xs font-medium leading-tight truncate">Admin</p>
                 <p className="text-[10px] text-muted-foreground leading-tight truncate">
-                  user@example.com
+                  {userEmail ?? 'Not signed in'}
                 </p>
               </div>
-            </button>
+            </div>
           )}
 
           {/* Sign out */}
@@ -185,6 +211,7 @@ export function AppSidebarShell() {
                   type="button"
                   variant="ghost"
                   size="sm"
+                  onClick={signOut}
                   className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
                 >
                   <LogOut className="h-4 w-4 shrink-0" />
@@ -197,6 +224,7 @@ export function AppSidebarShell() {
               type="button"
               variant="ghost"
               size="sm"
+              onClick={signOut}
               className="w-full justify-start px-2 gap-2 text-muted-foreground hover:text-foreground"
             >
               <LogOut className="h-4 w-4 shrink-0" />

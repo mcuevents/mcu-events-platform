@@ -53,7 +53,7 @@ export const Route = createRootRoute({
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { title: 'Blink App' },
       { name: 'description', content: 'An app built with Blink.' },
-      { name: 'theme-color', content: '#0a0a0a' },
+      { name: 'theme-color', content: '#0B2C5F' },
       { property: 'og:type', content: 'website' },
       { property: 'og:title', content: 'Blink App' },
       { property: 'og:description', content: 'An app built with Blink.' },
