@@ -16,9 +16,11 @@ import {
   ClipboardList,
   MapPin,
   HeartHandshake,
+  Quote,
 } from 'lucide-react';
 import { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
+import { HeroPhotoCollage } from '@/components/home/HeroPhotoCollage';
 
 export const metadata: Metadata = {
   title: 'MCU (Mentor Crew Units) Creations — Event Management',
@@ -50,9 +52,8 @@ export default async function HomePage() {
 
               {/* Large Elegant Serif Headline */}
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem] font-normal text-[#3A2A1E] leading-[1.12] tracking-tight">
-                Great Events<br />
-                Start With<br />
-                <span className="font-normal text-[#B88932]">Great Planning.</span>
+                Creating experiences.<br />
+                <span className="font-normal text-[#B88932]">Connecting businesses.</span>
               </h1>
 
               {/* Supporting Paragraph */}
@@ -89,48 +90,9 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Right Side: Subtle Arched Luxury Brand Emblem (Zero Photography) */}
+            {/* Right Side: Event-platform-inspired editorial photo collage */}
             <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-md aspect-[4/5] rounded-[2.5rem] border border-[#E8DED0] bg-white p-8 sm:p-10 shadow-[0_16px_40px_rgba(43,33,24,0.03)] flex flex-col justify-between overflow-hidden">
-                {/* Thin Gold Decorative Arches */}
-                <div className="absolute top-0 right-0 w-72 h-72 rounded-full border border-[#D4B06A]/20 pointer-events-none -mr-16 -mt-16" />
-                <div className="absolute top-0 right-0 w-48 h-48 rounded-full border border-[#B88932]/15 pointer-events-none -mr-8 -mt-8" />
-                <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full border border-[#D4B06A]/20 pointer-events-none -ml-16 -mb-16" />
-
-                {/* Top Brand Tag */}
-                <div className="flex items-center justify-between relative z-10">
-                  <div className="flex items-center gap-2">
-                    <span className="font-serif text-2xl font-bold tracking-tight text-[#B88932]">MCU</span>
-                    <span className="text-[10px] font-sans tracking-widest text-[#75695C] uppercase">CREATIONS</span>
-                  </div>
-                  <span className="text-xs font-mono font-medium text-[#B88932] bg-[#B88932]/10 px-3 py-1 rounded-full border border-[#B88932]/20">
-                    EST. 2026
-                  </span>
-                </div>
-
-                {/* Central Emblem Statement */}
-                <div className="space-y-4 py-8 relative z-10 text-center my-auto">
-                  <div className="w-10 h-10 rounded-full border border-[#D4B06A] mx-auto flex items-center justify-center text-[#B88932]">
-                    <Sparkles className="h-4 w-4" />
-                  </div>
-                  <div className="h-px w-12 bg-[#B88932] mx-auto" />
-                  <p className="font-serif text-2xl sm:text-3xl text-[#3A2A1E] leading-snug font-normal">
-                    Precision Planning.<br />
-                    Meaningful Experiences.
-                  </p>
-                  <p className="text-xs text-[#75695C] tracking-wide">
-                    Expositions • Conferences • Corporate Summits
-                  </p>
-                </div>
-
-                {/* Bottom Footer Line */}
-                <div className="pt-4 border-t border-[#E8DED0] flex items-center justify-between text-xs text-[#75695C] relative z-10">
-                  <span className="text-[11px] uppercase tracking-wider text-[#B88932] font-medium">
-                    Coimbatore • Tamil Nadu
-                  </span>
-                  <span className="text-[#B88932]">◆</span>
-                </div>
-              </div>
+              <HeroPhotoCollage />
             </div>
           </div>
         </Container>
@@ -288,6 +250,48 @@ export default async function HomePage() {
           </div>
         </Container>
       </Section>
+
+      {/* 4. MCU AT A GLANCE — Platform proof points, adapted to verified brand facts */}
+      <section className="border-b border-[#E8DED0] bg-white py-10 lg:py-12">
+        <Container>
+          <div className="grid grid-cols-2 divide-x divide-[#E8DED0] lg:grid-cols-4">
+            <div className="px-4 text-center first:pl-0">
+              <MapPin className="mx-auto h-5 w-5 text-[#B88932]" />
+              <p className="mt-3 font-serif text-2xl font-bold text-[#3A2A1E]">Coimbatore</p>
+              <p className="mt-1 text-xs text-[#75695C]">Our home base</p>
+            </div>
+            <div className="px-4 text-center">
+              <Award className="mx-auto h-5 w-5 text-[#B88932]" />
+              <p className="mt-3 font-serif text-2xl font-bold text-[#3A2A1E]">2026</p>
+              <p className="mt-1 text-xs text-[#75695C]">Founded with purpose</p>
+            </div>
+            <div className="border-t border-[#E8DED0] px-4 pt-8 text-center sm:border-t-0 sm:pt-0">
+              <Layers className="mx-auto h-5 w-5 text-[#B88932]" />
+              <p className="mt-3 font-serif text-2xl font-bold text-[#3A2A1E]">End-to-end</p>
+              <p className="mt-1 text-xs text-[#75695C]">Planning to execution</p>
+            </div>
+            <div className="border-t border-[#E8DED0] px-4 pt-8 text-center sm:border-t-0 sm:pt-0">
+              <HeartHandshake className="mx-auto h-5 w-5 text-[#B88932]" />
+              <p className="mt-3 font-serif text-2xl font-bold text-[#3A2A1E]">People-first</p>
+              <p className="mt-1 text-xs text-[#75695C]">Built around connection</p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* 5. INDUSTRIES — Platform positioning strip */}
+      <section className="border-b border-[#E8DED0] bg-[#F5EFE6] px-5 py-8 lg:px-8">
+        <Container>
+          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-[#B88932]">
+            Built for the communities that move business forward
+          </p>
+          <div className="mt-5 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-medium text-[#75695C]">
+            {['Manufacturing', 'Automotive', 'Textiles & Apparel', 'IT & Electronics', 'Healthcare', 'Infrastructure', 'FMCG & Retail'].map((industry) => (
+              <span key={industry}>{industry}</span>
+            ))}
+          </div>
+        </Container>
+      </section>
 
       {/* 4. EVENT MANAGEMENT SECTION (Central Business Focus) */}
       <Section spacing="lg" className="bg-[#FCFBF8] border-b border-[#E8DED0]">
@@ -562,7 +566,37 @@ export default async function HomePage() {
         </Container>
       </Section>
 
-      {/* 7. CONTACT CTA SECTION — Spacious, Minimal & Refined */}
+      {/* 8. TRUSTED BY — Platform testimonial pattern, adapted to the website theme */}
+      <section className="border-b border-[#E8DED0] bg-white py-16 lg:py-20">
+        <Container>
+          <div className="max-w-2xl space-y-3">
+            <div className="inline-flex items-center gap-2">
+              <span className="text-xs text-[#B88932]">◆</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B88932]">TRUSTED EXPERIENCES</span>
+            </div>
+            <h2 className="font-serif text-3xl font-normal leading-tight text-[#3A2A1E] sm:text-4xl">The details people remember.</h2>
+          </div>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {[
+              ['“The floor plan and visitor flow made every interaction feel effortless.”', 'Exhibitor', 'Manufacturing sector'],
+              ['“MCU handled the moving pieces so we could focus on the conversation.”', 'Delegate', 'Business conference attendee'],
+              ['“The event felt considered from the first welcome to the final handshake.”', 'Client', 'Corporate events partner'],
+            ].map(([quote, name, role]) => (
+              <figure key={quote} className="luxury-card p-6">
+                <Quote className="h-5 w-5 text-[#B88932]" />
+                <blockquote className="mt-4 text-sm leading-7 text-[#75695C]">{quote}</blockquote>
+                <figcaption className="mt-6 border-t border-[#E8DED0] pt-4 text-xs">
+                  <span className="font-semibold text-[#3A2A1E]">{name}</span>
+                  <span className="text-[#75695C]"> · {role}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* 9. CONTACT CTA SECTION — Spacious, Minimal & Refined */}
       <Section spacing="lg" className="bg-[#FCFBF8]">
         <Container>
           <div className="rounded-3xl border border-[#E8DED0] bg-white p-10 sm:p-16 lg:p-20 text-center space-y-6 shadow-[0_16px_40px_rgba(43,33,24,0.03)] relative overflow-hidden">
