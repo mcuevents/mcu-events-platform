@@ -7,8 +7,29 @@ export const supabase = supabaseUrl && supabaseAnonKey
   ? createClient(supabaseUrl, supabaseAnonKey)
   : null
 
+export type EventCategory = 'Trade Show' | 'Expo' | 'Conference' | 'Corporate'
+export type EventStatus = 'draft' | 'upcoming' | 'past'
+
+export type EventRow = {
+  id: string
+  slug: string
+  title: string
+  category: EventCategory
+  tagline: string | null
+  description: string | null
+  start_date: string
+  end_date: string | null
+  location: string
+  venue: string | null
+  hero_image_url: string | null
+  status: EventStatus
+  created_at: string
+  updated_at: string
+}
+
 export type EventRegistration = {
   id: string
+  event_id: string | null
   full_name: string
   company_name: string
   designation: string
@@ -20,6 +41,7 @@ export type EventRegistration = {
   requirements: string | null
   consent: boolean
   created_at: string
+  events?: Pick<EventRow, 'title' | 'slug'> | null
 }
 
 export type ContactSubmission = {

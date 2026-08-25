@@ -10,9 +10,11 @@
     "lint:css": "stylelint \"src/**/*.css\" --fix --quiet",
     "lint:js": "eslint . --ext ts,tsx --report-unused-disable-directives",
     "lint:types": "tsc --noEmit",
-    "lint": "bun run lint:types && bun run lint:js && bun run lint:css"
+    "lint": "npm run lint:types && npm run lint:js && npm run lint:css"
   },
   "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
     "typescript": "~6.0.2",
     "vite": "8.0.14"
   },
@@ -44,6 +46,8 @@
     "glob": "^13.0.6",
     "globals": "^17.9.0",
     "lucide-react": "^1.28.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "react-hook-form": "^7.84.0",
     "react-hot-toast": "^2.6.0",
     "react-responsive": "^10.0.1",
