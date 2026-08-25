@@ -45,9 +45,9 @@ interface NavItemDef {
 // { href: '/app/items', label: 'Items' }.
 const NAV_ITEMS: NavItemDef[] = [
   { href: '/app', icon: <LayoutDashboard className="h-4 w-4" />, label: 'Dashboard' },
-  { href: '/app/events', icon: <CalendarDays className="h-4 w-4" />, label: 'Events' },
   { href: '/app/registrations', icon: <Users className="h-4 w-4" />, label: 'Registrations' },
-  { href: '/app/enquiries', icon: <FileText className="h-4 w-4" />, label: 'Enquiries' },
+  { href: '/app/enquiries', icon: <FileText className="h-4 w-4" />, label: 'Contact enquiries' },
+  { href: '/events', icon: <CalendarDays className="h-4 w-4" />, label: 'Public events' },
 ]
 
 function NavItem({ item, collapsed, active }: { item: NavItemDef; collapsed: boolean; active: boolean }) {

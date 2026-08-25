@@ -67,7 +67,7 @@ function Home() {
             <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-white/70 backdrop-blur-sm">
               <span className="size-1.5 rounded-full bg-accent" />Event partners for ambitious businesses
             </div>
-            <h1 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">Creating experiences.<br /><span className="text-accent">Connecting businesses.</span></h1>
+            <h1 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-primary-foreground sm:text-5xl lg:text-6xl">Creating experiences.<br /><span className="text-accent">Connecting businesses.</span></h1>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-white/65">MCU Events designs and delivers the moments where industries meet, ideas move, and lasting business relationships begin.</p>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <a href="#services" className="rounded-lg bg-accent px-6 py-3.5 font-semibold text-accent-foreground shadow-md transition-colors hover:bg-accent/90">Explore our services <ArrowRight className="ml-2 inline size-4" /></a>

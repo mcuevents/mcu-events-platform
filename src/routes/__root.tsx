@@ -53,12 +53,12 @@ export const Route = createRootRoute({
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { title: 'Blink App' },
       { name: 'description', content: 'An app built with Blink.' },
-      { name: 'theme-color', content: '#0B2C5F' },
+      { name: 'theme-color', content: '#0B1F3A' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:title', content: 'Blink App' },
-      { property: 'og:description', content: 'An app built with Blink.' },
+      { property: 'og:title', content: 'MCU Events' },
+      { property: 'og:description', content: 'Premium expos, trade shows, conferences, and business events.' },
       // Shared-shell SEO defaults — set these to the real brand/locale per app.
-      { property: 'og:site_name', content: 'Blink App' },
+      { property: 'og:site_name', content: 'MCU Events' },
       { property: 'og:locale', content: 'en_US' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
@@ -90,8 +90,8 @@ function RootDocument({ children }: { children: ReactNode }) {
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@graph': [
-                { '@type': 'WebSite', name: 'Blink App', url: '/' },
-                { '@type': 'Organization', name: 'Blink App', url: '/', sameAs: [] },
+                { '@type': 'WebSite', name: 'MCU Events', url: '/' },
+                { '@type': 'Organization', name: 'MCU Events', url: '/', sameAs: [] },
               ],
             }),
           }}
