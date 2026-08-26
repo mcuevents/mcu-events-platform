@@ -1,75 +1,51 @@
-# MCU Events
+# MCU Creations
 
-Vite + React + TypeScript + Tailwind CSS + TanStack Router site for MCU Events,
-a business & corporate events management company running trade shows, expos,
-conferences, and corporate experiences. Backed by Supabase (Postgres + Auth)
-for event management, registrations, contact enquiries, and an authenticated
-admin dashboard.
+Next.js 14 (App Router) marketing site for **MCU (Mentor Crew Units) Creations**,
+a Coimbatore-based event management and digital engagement company. The site
+is fully static/mock-data driven — there is no database or backend service to
+configure. All content lives in code and ships with the app.
 
 ## Site map
 
-- `/` — home page (hero, about, services, dynamic upcoming events, testimonials)
-- `/about` — company story, values, timeline
-- `/services` — capability pages (trade shows, expos, conferences, corporate)
-- `/events` — full events calendar, filterable by category
-- `/events/$slug` — individual event detail page with a Register CTA
-- `/register` — multi-event registration form (event selectable via dropdown
-  or a `?event=slug` query param from an event detail page)
+- `/` — home page (hero, about, services, upcoming events, testimonials)
+- `/about` — company story and values
+- `/services` — capability pages (event management, digital marketing, social media)
+- `/business` — business/franchise-focused landing page
+- `/events` — full events listing, filterable by category and status
+- `/events/[slug]` — individual event detail page
+- `/exhibitors`, `/sponsors`, `/partners` — partner directory pages by category
+- `/gallery`, `/media` — photo gallery and video highlights
+- `/blog`, `/blog/[slug]` — articles
+- `/showcase` — portfolio/showcase page
 - `/contact` — general enquiry form
-- `/admin` — staff sign-in
-- `/app` — authenticated dashboard: manage events, registrations, enquiries
 
-## Backend setup (Supabase)
+## Content & data
 
-To connect a real backend:
+There's no admin dashboard or database — all site content (events, blog
+posts, partners, services, testimonials, team members, gallery/video items)
+lives in `src/lib/mockData.ts`. Edit that file directly to add, remove, or
+update content; the public pages read from it through the thin service
+functions in `src/services/*.service.ts`.
 
-1. Create a free project at [supabase.com](https://supabase.com).
-2. In the Supabase SQL editor, run the migrations in `supabase/migrations/`
-   **in order**:
-   - `0001_init.sql` — `contact_submissions` and `event_registrations` tables
-     with row-level security (anyone can submit a form, only signed-in staff
-     can read the results).
-   - `0002_events.sql` — adds the `events` table (trade shows / expos /
-     conferences / corporate events shown on the public site), links
-     `event_registrations` to a specific event, and seeds four sample events.
-3. Copy `.env.example` to `.env` and fill in your project's URL and anon key
-   (Project Settings → API in the Supabase dashboard).
-4. Create at least one admin user: Supabase dashboard → Authentication →
-   Users → Add user. Sign in with those credentials at `/admin` to reach the
-   dashboard at `/app`.
+Site-wide settings (contact details, social links, branding, footer, SEO
+defaults, the announcement bar) live as defaults in
+`src/services/globalSettings.service.ts`.
 
-Without a `.env`, the forms and dashboard show a "not connected" message
-instead of throwing, and the public site falls back to a small set of sample
-events — the marketing pages work fine on their own.
-
-### Managing events
-
-Once connected, sign in at `/admin` and go to **Events** in the dashboard to
-create, edit, and publish events. Each event has a `status` of `draft`
-(hidden from the public site), `upcoming`, or `past`. Registrations submitted
-on `/register` are linked to the event the visitor selected, and show up
-under **Registrations** with the event name.
-
-### Contact details
-
-The placeholder email, phone, and address in the header/footer/contact page
-are illustrative — swap them for the real details in `src/components/SiteFooter.tsx`
-and `src/routes/contact.tsx` when ready.
-
-## Features
-
-- **Linting**: TypeScript (`tsc --noEmit`), ESLint, and Stylelint
-- **Shadcn/ui**: Pre-configured with all Shadcn components
-- **Modern Stack**: Vite + React + TypeScript + Tailwind CSS
+Contact and registration forms (`ContactClientWrapper`, event registration/
+enquiry modals) resolve locally via `src/services/enquiries.service.ts` and
+show a success state, but nothing is persisted anywhere — wire that file up
+to a real endpoint or email service if you need submissions to go somewhere.
 
 ## Available Scripts
 
 ```bash
-# Run all linting (types + JS + CSS)
-npm run lint
-
-# Individual linting
-npm run lint:types # TypeScript (tsc --noEmit)
-npm run lint:js    # ESLint
-npm run lint:css   # Stylelint
+npm run dev     # start the dev server
+npm run build   # production build
+npm run start   # run the production build
+npm run lint    # next lint
 ```
+
+## Deployment
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for the Netlify build configuration and
+custom domain setup....

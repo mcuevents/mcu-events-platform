@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '@/components/ui/Container';
-import { Button, ButtonProps } from '@/components/ui/Button';
+import { Button, ButtonProps } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 

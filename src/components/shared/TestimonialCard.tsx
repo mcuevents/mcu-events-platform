@@ -1,6 +1,6 @@
 import React from 'react';
 import { Testimonial } from '@/types';
-import { Card, CardContent } from '@/components/ui/Card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Quote, Star } from 'lucide-react';
 
 export interface TestimonialCardProps {

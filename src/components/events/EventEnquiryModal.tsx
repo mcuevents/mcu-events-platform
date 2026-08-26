@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { Modal } from '@/components/ui/Modal';
-import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { Textarea } from '@/components/ui/Textarea';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Select } from '@/components/ui/Select';
 import { submitEnquiry } from '@/services/enquiries.service';
 import { CheckCircle2, Send, AlertCircle, HelpCircle } from 'lucide-react';

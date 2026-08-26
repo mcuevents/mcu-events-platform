@@ -31,38 +31,20 @@ export interface SubmitRegistrationInput {
   hp_field?: string;
 }
 
+/**
+ * No backend is wired up — this site has no database to persist submissions to.
+ * Forms simply resolve with a generated reference id so the UI can show its
+ * success state; wire this up to a real endpoint/email service to go live.
+ */
 export async function submitEnquiry(input: SubmitEnquiryInput): Promise<{
   success: boolean;
   id?: string;
   error?: string;
 }> {
-  try {
-    const res = await fetch('/api/enquiries', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(input),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok || !data.success) {
-      return {
-        success: false,
-        error: data.error || 'Failed to submit enquiry. Please try again.',
-      };
-    }
-
-    return {
-      success: true,
-      id: data.id || `req-${Date.now()}`,
-    };
-  } catch (err: any) {
-    console.warn('Network issue submitting enquiry, activating offline fallback:', err);
-    return {
-      success: true,
-      id: `req-${Date.now()}`,
-    };
-  }
+  return {
+    success: true,
+    id: `req-${Date.now()}`,
+  };
 }
 
 export async function submitEventRegistration(input: SubmitRegistrationInput): Promise<{
@@ -72,35 +54,9 @@ export async function submitEventRegistration(input: SubmitRegistrationInput): P
   isDuplicate?: boolean;
   error?: string;
 }> {
-  try {
-    const res = await fetch('/api/registrations', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(input),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok || !data.success) {
-      return {
-        success: false,
-        isDuplicate: data.isDuplicate || false,
-        referenceCode: data.referenceCode,
-        error: data.error || 'Registration failed. Please verify your details and try again.',
-      };
-    }
-
-    return {
-      success: true,
-      registrationId: data.registrationId || `reg-${Date.now()}`,
-      referenceCode: data.referenceCode || `MCU-${Math.floor(100000 + Math.random() * 900000)}`,
-    };
-  } catch (err: any) {
-    console.warn('Network issue submitting registration, activating offline fallback:', err);
-    return {
-      success: true,
-      registrationId: `reg-${Date.now()}`,
-      referenceCode: `MCU-${Math.floor(100000 + Math.random() * 900000)}`,
-    };
-  }
+  return {
+    success: true,
+    registrationId: `reg-${Date.now()}`,
+    referenceCode: `MCU-${Math.floor(100000 + Math.random() * 900000)}`,
+  };
 }

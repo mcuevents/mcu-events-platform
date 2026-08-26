@@ -1,7 +1,7 @@
 import React from 'react';
 import { EntityPartner } from '@/types/partners';
 import { Store } from 'lucide-react';
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/ui/card';
 
 interface EventExhibitorsProps {
   exhibitors?: EntityPartner[];

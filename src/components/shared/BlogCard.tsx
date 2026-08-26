@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { BlogPost } from '@/types';
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
+import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/utils';
 import { Calendar, ArrowRight, User } from 'lucide-react';
 

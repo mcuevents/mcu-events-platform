@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge } from './Badge';
+import { Badge } from './badge';
 import { EventStatus } from '@/types/events';
 import { EnquiryStatus } from '@/types/enquiries';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { EntityPartner } from '@/types/partners';
 import { Award, ExternalLink } from 'lucide-react';
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
 
 interface EventSponsorsProps {
   sponsors?: EntityPartner[];

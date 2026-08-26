@@ -1,6 +1,6 @@
 import React from 'react';
 import { EventSpeaker } from '@/types/events';
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/ui/card';
 import { Mic, Linkedin } from 'lucide-react';
 
 interface EventSpeakersProps {
