@@ -29,7 +29,7 @@ export const defaultGeneralSettings: GeneralSettings = {
 export const defaultContactSettings: ContactSettings = {
   primaryPhone: '7010377731',
   secondaryPhone: '700667500',
-  primaryEmail: 'info@mcucreations.com',
+  primaryEmail: 'mcuevents26@gmail.com',
   secondaryEmail: 'events@mcucreations.com',
   whatsappNumber: '7010377731',
   whatsappDefaultMessage: 'Hello MCU Creations, I would like to enquire about your event management and digital marketing services.',
@@ -200,7 +200,7 @@ export const defaultMaintenanceSettings: MaintenanceSettings = {
   enabled: false,
   title: 'Website Scheduled Maintenance',
   description: 'We are currently upgrading our event registration systems and server infrastructure. We will be back online shortly.',
-  contactEmail: 'info@mcucreations.com',
+  contactEmail: 'mcuevents26@gmail.com',
   contactPhone: '7010377731',
   expectedEndTime: '',
 };

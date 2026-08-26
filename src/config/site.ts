@@ -5,12 +5,12 @@ export const siteConfig = {
   description:
     'MCU (Mentor Crew Units) Creations is a Coimbatore-based startup founded in 2026, focused on event management and creating meaningful experiences for businesses, organizations and communities.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://mcucreations.com',
-  ogImage: '/logo.jpeg',
+  ogImage: '/logo.png',
   contacts: {
     primaryPhone: '7010377731',
     secondaryPhone: '700667500',
     phone: '7010377731',
-    email: 'info@mcucreations.com',
+    email: 'mcuevents26@gmail.com',
     address: '3rd Floor, Masakalipalayam, Ram Lakshman Nagar, Uppilipalayam, Coimbatore, Tamil Nadu - 641004, India',
     city: 'Coimbatore',
     state: 'Tamil Nadu',

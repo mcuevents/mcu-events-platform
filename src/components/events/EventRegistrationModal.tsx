@@ -187,7 +187,7 @@ export function EventRegistrationModal({
                 <span>{error}</span>
                 {isDuplicate && (
                   <p className="text-[11px] text-amber-700">
-                    If you require changes or pass reassignment, please reach out directly at {event.organizerEmail || 'info@mcucreations.com'}.
+                    If you require changes or pass reassignment, please reach out directly at {event.organizerEmail || 'mcuevents26@gmail.com'}.
                   </p>
                 )}
               </div>

@@ -157,7 +157,7 @@ export default function AboutPage() {
                 <span className="text-[#75695C] uppercase text-[11px] font-semibold block">Direct Lines</span>
                 <div className="space-y-1">
                   <p className="font-mono font-bold text-[#2B2118]">7010377731 / 700667500</p>
-                  <p className="text-[#75695C]">info@mcucreations.com</p>
+                  <p className="text-[#75695C]">mcuevents26@gmail.com</p>
                 </div>
               </div>
             </div>

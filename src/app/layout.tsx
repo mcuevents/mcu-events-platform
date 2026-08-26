@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: `${siteConfig.url}/logo.jpeg`,
+        url: `${siteConfig.url}/logo.png`,
         width: 1200,
         height: 630,
         alt: 'MCU Creations Logo',
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/logo.jpeg`],
+    images: [`${siteConfig.url}/logo.png`],
   },
   robots: {
     index: true,
