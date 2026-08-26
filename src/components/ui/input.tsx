@@ -1,21 +1,45 @@
-import * as React from "react"
+import React from 'react';
+import { cn } from '@/lib/utils';
 
-import { cn } from "@/lib/utils"
-
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
-  return (
-    <input
-      type={type}
-      data-slot="input"
-      className={cn(
-        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-        className
-      )}
-      {...props}
-    />
-  )
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
+  helperText?: string;
 }
 
-export { Input }
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type = 'text', label, error, helperText, id, ...props }, ref) => {
+    const generatedId = React.useId();
+    const inputId = id || generatedId;
+
+    return (
+      <div className="w-full space-y-1.5">
+        {label && (
+          <label
+            htmlFor={inputId}
+            className="block text-xs font-bold uppercase tracking-wider text-[#5A4E45]"
+          >
+            {label}
+          </label>
+        )}
+        <input
+          type={type}
+          id={inputId}
+          ref={ref}
+          className={cn(
+            'flex h-11 w-full rounded-xl border border-[#E0D5C7] bg-white px-4 py-2 text-sm text-[#2D231E] placeholder-[#9C8F85] transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:border-[#B8860B] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B8860B] shadow-sm disabled:cursor-not-allowed disabled:opacity-50',
+            error && 'border-red-500 focus-visible:ring-red-500',
+            className
+          )}
+          {...props}
+        />
+        {error ? (
+          <p className="text-xs text-red-600 font-medium">{error}</p>
+        ) : helperText ? (
+          <p className="text-xs text-[#7A6D62]">{helperText}</p>
+        ) : null}
+      </div>
+    );
+  }
+);
+Input.displayName = 'Input';
