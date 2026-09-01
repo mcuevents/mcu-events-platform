@@ -5,11 +5,10 @@ import { Container, Section, Card, CardHeader, CardTitle, CardDescription, CardC
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { Hero } from '@/components/shared/Hero';
 import { EventCard } from '@/components/events/EventCard';
-import { BlogCard } from '@/components/shared/BlogCard';
 import { PartnerCard } from '@/components/shared/PartnerCard';
 import { TestimonialCard } from '@/components/shared/TestimonialCard';
 import { Calendar, Users, MessageSquare, Sparkles, ArrowRight, Shield, Star, CheckCircle } from 'lucide-react';
-import { Event, BlogPost, EntityPartner, Testimonial } from '@/types';
+import { Event, EntityPartner, Testimonial } from '@/types';
 
 // Mock demonstration data for UI system showcase
 const sampleEvent: Event = {
@@ -34,21 +33,7 @@ const sampleEvent: Event = {
   updatedAt: '2026-08-01T00:00:00Z',
 };
 
-const sampleBlog: BlogPost = {
-  id: 'blog-1',
-  title: 'Maximizing Sponsor ROI at High-Impact Corporate Expos',
-  slug: 'maximizing-sponsor-roi-expos',
-  excerpt: 'Key strategies for event organizers and brand sponsors to drive measurable engagement and lead generation.',
-  content: '',
-  coverImage: '',
-  authorName: 'MCU Marketing Team',
-  category: 'Event Marketing',
-  tags: ['Sponsorship', 'Expos', 'B2B'],
-  isPublished: true,
-  publishedAt: '2026-08-15T00:00:00Z',
-  createdAt: '2026-08-15T00:00:00Z',
-  updatedAt: '2026-08-15T00:00:00Z',
-};
+
 
 const samplePartner: EntityPartner = {
   id: 'part-1',
@@ -226,15 +211,15 @@ export default function DesignSystemShowcasePage() {
           {/* 6. Card System Demonstrations */}
           <div className="space-y-6">
             <SectionHeader
+              number="06"
               badge="Card Foundations"
-              title="Event, Blog, Partner & Testimonial Cards"
+              title="Event & Partner Cards"
               subtitle="Reusable card components with consistent hover micro-interactions."
               align="left"
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <EventCard event={sampleEvent} />
-              <BlogCard post={sampleBlog} />
               <PartnerCard partner={samplePartner} />
               <TestimonialCard testimonial={sampleTestimonial} />
             </div>
@@ -243,15 +228,16 @@ export default function DesignSystemShowcasePage() {
           {/* 7. Form Controls System */}
           <div className="space-y-6">
             <SectionHeader
+              number="07"
               badge="Form Controls"
               title="Input, Select & Textarea Primitives"
-              subtitle="Accessible input fields with labels, focus rings, helper text, and validation errors."
+              subtitle="Accessible input fields with labels, focus rings, helper text, and validation states."
               align="left"
             />
             <Card className="p-6 max-w-3xl space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Input label="Full Name" placeholder="John Doe" helperText="Enter primary contact name" />
-                <Input label="Email Address" type="email" placeholder="john@mcucreations.com" error="Valid business email required" />
+                <Input label="Full Name" placeholder="Senthil Kumar" helperText="Enter primary contact name" />
+                <Input label="Email Address" type="email" placeholder="senthil@company.in" />
               </div>
               <Select
                 label="Enquiry Category"
@@ -259,9 +245,10 @@ export default function DesignSystemShowcasePage() {
                 onChange={(e) => setSelectedSelect(e.target.value)}
                 placeholder="Choose category..."
                 options={[
-                  { value: 'expos', label: 'Business & Franchise Expos' },
-                  { value: 'corporate', label: 'Corporate Event Management' },
-                  { value: 'marketing', label: 'Digital & Social Media Marketing' },
+                  { value: 'event', label: 'Event Management (End-to-End)' },
+                  { value: 'exhibitor', label: 'Exhibitor / Stall Booking' },
+                  { value: 'sponsor', label: 'Event Sponsorship' },
+                  { value: 'coordination', label: 'Venue & Logistics Coordination' },
                 ]}
               />
               <Textarea label="Event Requirements" placeholder="Describe booth size, venue preferences..." rows={3} />

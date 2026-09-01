@@ -2,50 +2,48 @@
 
 import React, { useState } from 'react';
 import { EntityPartner } from '@/types/partners';
-import { Container, Section, Card, Button, Input, Textarea, Select, Modal, Badge } from '@/components/ui';
+import { Container, Section, Input, Textarea, Select, Modal } from '@/components/ui';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { PartnerCard } from '@/components/shared/PartnerCard';
 import { submitEnquiry } from '@/services/enquiries.service';
-import { CheckCircle2, Send, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Send, ArrowRight, Store } from 'lucide-react';
 
 const STALL_PACKAGES = [
   {
     name: 'Standard Shell Scheme (3m x 3m)',
     size: '9 Sq.m',
-    idealFor: 'Startups, D2C Retail & Single Franchise Concepts',
+    idealFor: 'Enterprises & Product Showcases',
     features: [
-      'Modular Octanorm Wall Panels with Company Fascia Board',
-      '1 Information Counter + 2 Chairs + 1 Waste Bin',
-      '3 LED Spotlights & 5A Power Point',
-      '2 Free Exhibitor Badges + Standard Catalog Listing',
+      'Modular wall panels with company fascia board',
+      '1 Information counter + 2 chairs + 1 power point',
+      'LED spotlights & lighting setup',
+      'Exhibitor passes & directory inclusion',
     ],
-    badge: 'Popular Choice',
+    badge: 'Standard Space',
   },
   {
     name: 'Prime Corner Booth (6m x 3m)',
     size: '18 Sq.m',
-    idealFor: 'Established Regional Brands & Multi-Unit Franchises',
+    idealFor: 'Established Regional Brands & Multi-Product Displays',
     features: [
-      'Dual Open-Side Corner Exposure for 2X Footfall',
-      '2 Discussion Tables + 6 Chairs + Lockable Reception Counter',
-      '6 LED Spotlights & 15A Power Point Supply',
-      '4 Exhibitor Badges + Half-Page Event Catalog Feature',
-      'Mobile QR Lead Scanner App Access',
+      'Dual open-side corner exposure for enhanced visitor flow',
+      '2 Discussion tables + 4 chairs + reception counter',
+      'Multiple LED spotlights and power points',
+      'Exhibitor passes and event catalog feature',
     ],
-    badge: 'High Visibility',
+    badge: 'Corner Visibility',
   },
   {
     name: 'Island Custom Pavilion (6m x 6m)',
     size: '36 Sq.m',
-    idealFor: 'National Brands, Heavy Equipment & Auto Pavilions',
+    idealFor: 'Flagship Corporate Showcases & Demonstrations',
     features: [
-      'Four-Side Open Prime Central Hall Location',
-      'Custom 3D Fabrication Ready Bare Space',
-      '3-Phase 32A Power Supply + High-Speed Venue Mesh WiFi',
-      '8 Exhibitor Badges + Full-Page Color Catalog Feature',
-      'Stage Product Launch Slot & Press Release Distribution',
+      'Four-side open prime central hall location',
+      'Bare space ready for custom architectural fabrication',
+      'Dedicated 3-phase power supply and logistics coordination',
+      'Priority attendee access and catalog feature',
     ],
-    badge: 'Flagship Space',
+    badge: 'Island Pavilion',
   },
 ];
 
@@ -61,7 +59,7 @@ export function ExhibitorsClientWrapper({ exhibitors }: ExhibitorsClientWrapperP
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [companyName, setCompanyName] = useState('');
-  const [sector, setSector] = useState('Retail & FMCG');
+  const [sector, setSector] = useState('Manufacturing & Engineering');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -82,8 +80,8 @@ export function ExhibitorsClientWrapper({ exhibitors }: ExhibitorsClientWrapperP
         email,
         phone,
         companyName,
-        subject: `Exhibitor Stall Booking: ${selectedStall} (${sector})`,
-        message: `${message}\nStall Preference: ${selectedStall}\nSector: ${sector}`,
+        subject: `Exhibitor Space Booking: ${selectedStall} (${sector})`,
+        message: `${message}\nSpace Preference: ${selectedStall}\nSector: ${sector}`,
       });
 
       setLoading(false);
@@ -107,137 +105,173 @@ export function ExhibitorsClientWrapper({ exhibitors }: ExhibitorsClientWrapperP
   };
 
   return (
-    <div>
-      {/* 1. Hero Header */}
-      <div className="py-12 lg:py-16 bg-dark-950 border-b border-dark-800">
+    <div className="bg-[#FCFBF8]">
+      {/* 1. Hero */}
+      <div className="py-16 lg:py-24 luxury-hero-bg border-b border-[#E8DED0]">
         <Container>
-          <div className="max-w-3xl space-y-4">
-            <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase bg-brand-500/10 text-brand-400 border border-brand-500/20">
-              Exhibitor & Vendor Portal
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-black text-white">
-              Showcase Your Brand to <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-amber-300">10,000+ Buyers</span>
+          <div className="max-w-3xl space-y-6">
+            <div className="inline-flex items-center gap-3">
+              <span className="font-mono text-xs font-semibold text-[#B88932]">01</span>
+              <span className="text-[#D4B06A]/60 text-xs">/</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#B88932]">
+                EXHIBITION SPACES
+              </span>
+              <div className="h-px w-8 bg-[#D4B06A]/60" />
+            </div>
+
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-[3.5rem] font-normal text-[#3A2A1E] leading-tight">
+              Exhibition Stalls & <br />
+              <span className="italic font-normal text-[#B88932]">Pavilion Spaces.</span>
             </h1>
-            <p className="text-base sm:text-lg text-dark-300 leading-relaxed">
-              Book your exhibition stall at MCU Creations business expos. Connect with verified franchise investors, distributors, and corporate buyers.
+
+            <p className="text-base sm:text-lg text-[#75695C] leading-relaxed max-w-2xl">
+              Showcase your enterprise products and business services at events managed by MCU (Mentor Crew Units) Creations in Coimbatore and across Tamil Nadu.
             </p>
+
             <div className="pt-2 flex flex-wrap gap-4">
-              <Button
-                variant="primary"
-                size="lg"
+              <button
+                type="button"
+                className="btn-luxury-primary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2"
                 onClick={() => handleBookStall()}
-                rightIcon={<ArrowRight className="h-4 w-4" />}
               >
-                Reserve Stall Space
-              </Button>
+                <span>Book Exhibition Space</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </Container>
       </div>
 
-      {/* 2. Stall Schemes & Sizes */}
-      <Section spacing="md">
-        <Container space-y-12>
+      {/* 2. Stall Packages Grid */}
+      <Section spacing="lg" className="bg-[#FCFBF8]">
+        <Container className="space-y-12">
           <SectionHeader
-            badge="Stall Packages"
-            title="Choose Your Exhibition Space"
-            subtitle="Standardized octanorm modular stalls and bare space pavilions designed for maximum visitor engagement."
+            number="02"
+            badge="LAYOUTS"
+            title="Stall & Pavilion Packages"
+            subtitle="Standardized and custom exhibition spaces designed for optimal visitor engagement and vendor convenience."
+            align="left"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {STALL_PACKAGES.map((pkg) => (
-              <Card key={pkg.name} className="flex flex-col justify-between p-6 border-dark-800 hover:border-brand-500/40 transition-colors">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {STALL_PACKAGES.map((pkg, idx) => (
+              <div
+                key={pkg.name}
+                className="rounded-3xl border border-[#E8DED0] bg-white p-8 flex flex-col justify-between shadow-sm hover:border-[#B88932] transition-all space-y-6"
+              >
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <Badge variant="gold">{pkg.badge}</Badge>
-                    <span className="font-mono text-xs font-bold text-dark-300">{pkg.size}</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white">{pkg.name}</h3>
-                    <p className="text-xs text-dark-400 mt-1">{pkg.idealFor}</p>
+                  <div className="flex items-center justify-between pb-3 border-b border-[#E8DED0]">
+                    <span className="font-serif text-2xl font-light text-[#D4B06A]">
+                      0{idx + 1}
+                    </span>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-[#B88932] font-mono">
+                      {pkg.badge}
+                    </span>
                   </div>
 
-                  <div className="pt-4 border-t border-dark-800 space-y-2.5">
-                    {pkg.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-dark-300">
-                        <CheckCircle2 className="h-4 w-4 text-brand-400 shrink-0 mt-0.5" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-[#3A2A1E]">
+                      {pkg.name}
+                    </h3>
+                    <p className="text-xs font-mono font-semibold text-[#B88932] mt-0.5">
+                      Area: {pkg.size}
+                    </p>
                   </div>
+
+                  <p className="text-xs text-[#75695C] italic">
+                    Ideal for: {pkg.idealFor}
+                  </p>
+
+                  <ul className="space-y-3 pt-2">
+                    {pkg.features.map((feat, fIdx) => (
+                      <li key={fIdx} className="flex items-start gap-2.5 text-xs text-[#75695C] leading-relaxed">
+                        <CheckCircle2 className="h-4 w-4 text-[#B88932] shrink-0 mt-0.5" />
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-dark-800">
-                  <Button
-                    variant="secondary"
-                    className="w-full"
+                <div className="pt-6 border-t border-[#E8DED0]">
+                  <button
+                    type="button"
+                    className="w-full btn-luxury-secondary rounded-full py-3 text-xs font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2"
                     onClick={() => handleBookStall(pkg.name)}
                   >
-                    Enquire for {pkg.name.split(' ')[0]}
-                  </Button>
+                    <span>Reserve {pkg.size}</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </button>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
         </Container>
       </Section>
 
-      {/* 3. Featured Active Exhibitors */}
-      <Section spacing="md" className="bg-dark-950/60 border-t border-b border-dark-800">
-        <Container space-y-10>
-          <SectionHeader
-            badge="Directory"
-            title="Featured Brands & Past Exhibitors"
-            subtitle="Explore leading businesses and franchise networks that participate in MCU Creations summits."
-          />
+      {/* 3. Exhibitors Directory */}
+      {exhibitors && exhibitors.length > 0 && (
+        <Section spacing="lg" className="bg-white border-t border-[#E8DED0]">
+          <Container className="space-y-12">
+            <SectionHeader
+              number="03"
+              badge="DIRECTORY"
+              title="Registered Exhibitors"
+              subtitle="Participating enterprises and brands showcasing at MCU Creations events."
+              align="left"
+            />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {exhibitors.map((exhibitor) => (
-              <PartnerCard key={exhibitor.id} partner={exhibitor} />
-            ))}
-          </div>
-        </Container>
-      </Section>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {exhibitors.map((exhibitor) => (
+                <PartnerCard key={exhibitor.id} partner={exhibitor} />
+              ))}
+            </div>
+          </Container>
+        </Section>
+      )}
 
       {/* 4. Booking Modal */}
       <Modal
         isOpen={isModalOpen}
         onClose={submitted ? handleReset : () => setIsModalOpen(false)}
-        title={submitted ? 'Stall Enquiry Received!' : 'Book an Exhibitor Stall'}
+        title={submitted ? 'Enquiry Received!' : 'Book Exhibition Space'}
         description={
           submitted
-            ? 'Our expo floor manager will reach out within 2 business hours.'
-            : 'Fill in your brand and stall preference below.'
+            ? 'Our floor logistics team will send you the hall layout and stall availability confirmation.'
+            : 'Submit your requirements to receive floor plans and booking parameters.'
         }
         size="md"
       >
         {submitted ? (
           <div className="text-center py-6 space-y-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/10 text-brand-400 mx-auto">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#B88932]/10 text-[#B88932] border border-[#B88932]/25 mx-auto">
               <CheckCircle2 className="h-8 w-8" />
             </div>
-            <h3 className="text-lg font-bold text-white">Stall Request Registered</h3>
-            <p className="text-xs text-dark-300 max-w-sm mx-auto">
-              Thank you, <span className="text-white font-medium">{fullName}</span> from{' '}
-              <span className="text-white font-medium">{companyName || 'your company'}</span>. We have sent the floor plan and pricing to <span className="text-dark-200">{email}</span>.
+            <h3 className="font-serif text-lg font-bold text-[#3A2A1E]">Booking Request Logged</h3>
+            <p className="text-xs text-[#75695C] max-w-sm mx-auto">
+              Thank you, <span className="text-[#3A2A1E] font-semibold">{fullName}</span> from{' '}
+              <span className="text-[#3A2A1E] font-semibold">{companyName}</span>. We will share floor plan availability for <span className="text-[#B88932] font-bold">{selectedStall}</span> to <span className="font-mono text-[#3A2A1E]">{email}</span>.
             </p>
-            <Button variant="primary" className="w-full" onClick={handleReset}>
+            <button
+              type="button"
+              className="w-full btn-luxury-primary rounded-full py-3 text-xs font-semibold uppercase tracking-wider"
+              onClick={handleReset}
+            >
               Close Window
-            </Button>
+            </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Input
-                label="Your Name *"
-                placeholder="e.g. Rajesh Kumar"
+                label="Full Name *"
+                placeholder="e.g. K. Narayanan"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
               />
               <Input
                 label="Company / Brand Name *"
-                placeholder="e.g. Chai Kings"
+                placeholder="e.g. Premier Tech Industries"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
                 required
@@ -246,17 +280,17 @@ export function ExhibitorsClientWrapper({ exhibitors }: ExhibitorsClientWrapperP
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Input
-                label="Email Address *"
+                label="Official Email *"
                 type="email"
-                placeholder="sales@chaikings.com"
+                placeholder="narayanan@premiertech.in"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <Input
-                label="Phone / WhatsApp *"
+                label="Phone Number *"
                 type="tel"
-                placeholder="+91 98421 88900"
+                placeholder="7010377731"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
@@ -265,46 +299,51 @@ export function ExhibitorsClientWrapper({ exhibitors }: ExhibitorsClientWrapperP
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Select
-                label="Stall Scheme"
+                label="Stall Space Configuration"
                 value={selectedStall}
                 onChange={(e) => setSelectedStall(e.target.value)}
-                options={STALL_PACKAGES.map((p) => ({ value: p.name, label: p.name }))}
+                options={STALL_PACKAGES.map((s) => ({ value: s.name, label: `${s.size} - ${s.name}` }))}
               />
               <Select
-                label="Business Sector"
+                label="Industry Sector"
                 value={sector}
                 onChange={(e) => setSector(e.target.value)}
                 options={[
-                  { value: 'Food & Beverage', label: 'Food & Beverage (QSR)' },
+                  { value: 'Manufacturing & Engineering', label: 'Manufacturing & Engineering' },
+                  { value: 'Automotive & Logistics', label: 'Automotive & Logistics' },
+                  { value: 'Textiles & Apparel', label: 'Textiles & Apparel' },
+                  { value: 'IT & Electronics', label: 'IT & Electronics' },
+                  { value: 'Healthcare & Pharma', label: 'Healthcare & Pharma' },
                   { value: 'Retail & FMCG', label: 'Retail & FMCG' },
-                  { value: 'Education & EdTech', label: 'Education & EdTech' },
-                  { value: 'Automotive & EV', label: 'Automotive & EV' },
-                  { value: 'IT & Software SaaS', label: 'IT & Software SaaS' },
-                  { value: 'Healthcare & Wellness', label: 'Healthcare & Wellness' },
+                  { value: 'General Enterprise', label: 'General Enterprise' },
                 ]}
               />
             </div>
 
             <Textarea
-              label="Stall Requirements / Remarks"
-              placeholder="Specify custom booth requirements, power needs, or preferred stall numbers on floor plan..."
+              label="Stall Setup Requirements"
+              placeholder="Detail your display requirements, machinery/equipment dimensions, power loads, or custom backdrop needs..."
               rows={3}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
 
-            <div className="pt-2 flex justify-end gap-3">
-              <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)}>
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                variant="primary"
-                isLoading={loading}
-                rightIcon={<Send className="h-4 w-4" />}
+            <div className="pt-2 flex justify-end gap-3 border-t border-[#E8DED0]">
+              <button
+                type="button"
+                className="px-5 py-2.5 rounded-full text-xs font-semibold text-[#75695C] hover:text-[#3A2A1E]"
+                onClick={() => setIsModalOpen(false)}
               >
-                Submit Stall Request
-              </Button>
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-luxury-primary rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-wider flex items-center gap-2"
+              >
+                {loading ? <span>Sending...</span> : <span>Submit Request</span>}
+                <Send className="h-3.5 w-3.5" />
+              </button>
             </div>
           </form>
         )}

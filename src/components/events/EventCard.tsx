@@ -81,7 +81,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, index = 0 }) => {
 
           {/* Event Title */}
           <div className="space-y-2">
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3A2A1E] group-hover:text-[#B88932] transition-colors leading-snug">
+            <h3 className="event-card-title font-serif text-xl sm:text-2xl font-bold text-[#3A2A1E] leading-snug">
               {event.title}
             </h3>
             <p className="text-xs sm:text-sm text-[#75695C] line-clamp-2 leading-relaxed font-normal">

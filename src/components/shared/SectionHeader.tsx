@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 export interface SectionHeaderProps {
+  number?: string;
   badge?: string;
   title: string;
   subtitle?: string;
@@ -10,6 +11,7 @@ export interface SectionHeaderProps {
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
+  number,
   badge,
   title,
   subtitle,
@@ -24,20 +26,29 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
 
   return (
     <div className={cn('flex flex-col max-w-3xl mb-12', alignments[align], className)}>
-      {badge && (
+      {(badge || number) && (
         <div className="inline-flex items-center gap-3 mb-3">
-          <div className="h-px w-8 bg-[#D4AF37]/50" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#B8860B] font-mono">
-            {badge}
-          </span>
-          <div className="h-px w-8 bg-[#D4AF37]/50" />
+          {number && (
+            <span className="font-mono text-xs font-semibold text-[#B88932] tracking-wider">
+              {number}
+            </span>
+          )}
+          {number && badge && (
+            <span className="text-[#D4B06A]/60 text-xs">/</span>
+          )}
+          {badge && (
+            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#B88932]">
+              {badge}
+            </span>
+          )}
+          <div className="h-px w-8 bg-[#D4B06A]/60" />
         </div>
       )}
-      <h2 className="font-serif text-2xl sm:text-4xl font-normal sm:font-medium text-[#2D231E] tracking-tight leading-tight">
+      <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-[#3A2A1E] tracking-tight leading-tight">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-3 text-sm sm:text-base text-[#6E6258] font-normal leading-relaxed">
+        <p className="mt-3 text-sm sm:text-base text-[#75695C] font-normal leading-relaxed">
           {subtitle}
         </p>
       )}

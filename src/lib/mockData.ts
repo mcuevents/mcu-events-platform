@@ -151,7 +151,40 @@ export const mockPartners: EntityPartner[] = [
   },
 ];
 
-export const mockEvents: Event[] = [];
+export const mockEvents: Event[] = [
+  {
+    id: 'evt-1',
+    title: 'Tamil Nadu Business & Franchise Conclave 2026',
+    slug: 'tamil-nadu-business-franchise-conclave-2026',
+    description: 'Premier regional gathering connecting emerging business enterprises, commercial exhibitors, and trade delegations.',
+    category: 'exhibition',
+    status: 'upcoming',
+    startDate: '2026-11-14T09:30:00Z',
+    endDate: '2026-11-15T18:30:00Z',
+    locationName: 'CODISSIA Trade Fair Complex',
+    address: 'Avinashi Road, Peelamedu',
+    city: 'Coimbatore',
+    state: 'Tamil Nadu',
+    country: 'India',
+    bannerImage: '',
+    organizerName: 'MCU Creations',
+    organizerContact: '7010377731',
+    ticketTypes: [
+      {
+        id: 't-1',
+        name: 'Delegate Pass',
+        price: 0,
+        currency: 'INR',
+        available: 500,
+        description: 'Complimentary pass for business delegates and trade attendees.',
+      },
+    ],
+    isFeatured: true,
+    registrationOpen: true,
+    createdAt: '2026-08-01T00:00:00Z',
+    updatedAt: '2026-08-01T00:00:00Z',
+  },
+];
 
 export const mockServices: ServiceItem[] = [
   {
