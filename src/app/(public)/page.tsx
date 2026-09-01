@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   Phone,
   Mail,
+  MessageCircle,
   Building,
   Layers,
   Compass,
@@ -22,7 +23,6 @@ import {
 } from 'lucide-react';
 import { UpcomingEventNotification } from '@/components/home/UpcomingEventNotification';
 import { FloorPlanModal } from '@/components/home/FloorPlanModal';
-import { HomeContactForm } from '@/components/home/HomeContactForm';
 
 const categories = [
   'Home Appliances',
@@ -587,115 +587,124 @@ export default function HomePage() {
       </Section>
 
       {/* ============================================================ */}
+      {/* ============================================================ */}
       {/* 7. CONTACT SECTION (#contact)                                */}
       {/* ============================================================ */}
       <Section id="contact" spacing="lg" className="bg-[#FCFBF8]">
-        <Container size="lg">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
-            {/* Left: Heading & Verified Office Address */}
-            <div className="lg:col-span-5 space-y-8">
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-3">
-                  <span className="font-mono text-xs font-semibold text-[#B88932]">07</span>
-                  <span className="text-[#D4B06A]/60 text-xs">/</span>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#B88932]">
-                    GET IN TOUCH
-                  </span>
-                  <div className="h-px w-8 bg-[#D4B06A]/60" />
-                </div>
+        <Container size="lg" className="space-y-12 sm:space-y-16">
+          {/* Header */}
+          <div className="text-center space-y-4 max-w-2xl mx-auto">
+            <div className="inline-flex items-center justify-center gap-3">
+              <span className="font-mono text-xs font-semibold text-[#B88932]">07</span>
+              <span className="text-[#D4B06A]/60 text-xs">/</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#B88932]">
+                GET IN TOUCH
+              </span>
+              <div className="h-px w-8 bg-[#D4B06A]/60" />
+            </div>
 
-                <h2 className="font-serif text-3xl sm:text-5xl font-normal text-[#3A2A1E] leading-tight">
-                  Let's create <br />
-                  <span className="italic font-normal text-[#B88932]">something memorable.</span>
-                </h2>
+            <h2 className="font-serif text-3xl sm:text-5xl font-normal text-[#3A2A1E] leading-tight">
+              Let's <span className="italic font-normal text-[#B88932]">connect.</span>
+            </h2>
 
-                <p className="text-sm text-[#75695C] leading-relaxed">
-                  Reach out to MCU Creations to reserve your exhibition stall for One Zone 2K26 or discuss your corporate event management requirements.
+            <p className="text-sm sm:text-base text-[#75695C] leading-relaxed">
+              Have an enquiry, want to participate in One Zone Expo, or need more information? Reach out to us directly.
+            </p>
+          </div>
+
+          {/* Three Prominent Action Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+            {/* Card A: Email */}
+            <a
+              href="mailto:mcuevents26@gmail.com"
+              className="group relative rounded-3xl border border-[#E8DED0] bg-white p-8 sm:p-10 flex flex-col justify-between items-center text-center space-y-6 shadow-[0_8px_30px_rgba(43,33,24,0.03)] hover:shadow-[0_16px_40px_rgba(43,33,24,0.08)] hover:border-[#B88932] transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
+            >
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] text-[#B88932] group-hover:bg-[#B88932]/10 group-hover:border-[#B88932]/30 group-hover:scale-110 transition-all duration-300">
+                <Mail className="h-7 w-7" />
+              </div>
+
+              <div className="space-y-2 flex-1 flex flex-col justify-center">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#B88932] font-mono">
+                  EMAIL SUPPORT
+                </span>
+                <h3 className="font-serif text-2xl font-bold text-[#3A2A1E] group-hover:text-[#B88932] transition-colors">
+                  EMAIL US
+                </h3>
+                <p className="text-xs text-[#75695C] pt-1">
+                  Send your requirements or questions
+                </p>
+                <p className="font-mono text-sm font-semibold text-[#2B2118] pt-1 break-all">
+                  mcuevents26@gmail.com
                 </p>
               </div>
 
-              {/* Office Address Card */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E8DED0] space-y-7 shadow-[0_12px_32px_rgba(43,33,24,0.03)]">
-                {/* 1. Office Location */}
-                <div className="flex items-start gap-4">
-                  <div className="p-2.5 rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] text-[#B88932] shrink-0 mt-1">
-                    <MapPin className="h-5 w-5" />
-                  </div>
-                  <div className="space-y-2 flex-1">
-                    <span className="text-[11px] uppercase font-bold tracking-[0.18em] text-[#B88932] block">
-                      OFFICE ADDRESS
-                    </span>
-                    <h4 className="font-serif text-base sm:text-lg font-bold text-[#3A2A1E]">
-                      MCU (Mentor Crew Units) Creations
-                    </h4>
-                    <div className="text-sm sm:text-[15px] text-[#4A3E34] leading-[1.8] font-normal pt-0.5">
-                      <p>3rd Floor,</p>
-                      <p>Masakalipalayam,</p>
-                      <p>Ram Lakshman Nagar,</p>
-                      <p>Uppilipalayam,</p>
-                      <p>Coimbatore,</p>
-                      <p className="font-semibold text-[#2B2118] pt-0.5">Tamil Nadu – 641004</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 2. Direct Phone Lines */}
-                <div className="pt-6 border-t border-[#E8DED0] flex items-start gap-4">
-                  <div className="p-2.5 rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] text-[#B88932] shrink-0 mt-1">
-                    <Phone className="h-5 w-5" />
-                  </div>
-                  <div className="space-y-3 flex-1">
-                    <span className="text-[11px] uppercase font-bold tracking-[0.18em] text-[#B88932] block">
-                      DIRECT PHONE NUMBERS
-                    </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-0.5">
-                      <a
-                        href="tel:7010377731"
-                        className="flex items-center justify-center sm:justify-start gap-2.5 px-4 py-3 rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] hover:border-[#B88932] hover:bg-white text-[#2B2118] hover:text-[#B88932] transition-all group shadow-sm"
-                      >
-                        <Phone className="h-4 w-4 text-[#B88932] shrink-0 group-hover:scale-110 transition-transform" />
-                        <span className="font-mono font-bold text-sm sm:text-base tracking-wide">
-                          7010377731
-                        </span>
-                      </a>
-
-                      <a
-                        href="tel:700667500"
-                        className="flex items-center justify-center sm:justify-start gap-2.5 px-4 py-3 rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] hover:border-[#B88932] hover:bg-white text-[#2B2118] hover:text-[#B88932] transition-all group shadow-sm"
-                      >
-                        <Phone className="h-4 w-4 text-[#B88932] shrink-0 group-hover:scale-110 transition-transform" />
-                        <span className="font-mono font-bold text-sm sm:text-base tracking-wide">
-                          700667500
-                        </span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 3. Official Email */}
-                <div className="pt-6 border-t border-[#E8DED0] flex items-start gap-4">
-                  <div className="p-2.5 rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] text-[#B88932] shrink-0 mt-0.5">
-                    <Mail className="h-5 w-5" />
-                  </div>
-                  <div className="space-y-1.5 flex-1">
-                    <span className="text-[11px] uppercase font-bold tracking-[0.18em] text-[#B88932] block">
-                      OFFICIAL EMAIL
-                    </span>
-                    <a
-                      href="mailto:mcuevents26@gmail.com"
-                      className="inline-block text-sm sm:text-[15px] font-medium text-[#2B2118] hover:text-[#B88932] transition-colors"
-                    >
-                      mcuevents26@gmail.com
-                    </a>
-                  </div>
-                </div>
+              <div className="btn-luxury-primary w-full rounded-full py-3.5 px-6 text-xs font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2 transition-all">
+                <span>Send Email</span>
+                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
-            </div>
+            </a>
 
-            {/* Right: Interactive Booking & Enquiry Form */}
-            <div className="lg:col-span-7">
-              <HomeContactForm />
-            </div>
+            {/* Card B: WhatsApp */}
+            <a
+              href="https://wa.me/917010377731?text=Hello%20MCU%20Creations%2C%20I%20would%20like%20to%20know%20more%20about%20One%20Zone%20Expo."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative rounded-3xl border border-[#E8DED0] bg-white p-8 sm:p-10 flex flex-col justify-between items-center text-center space-y-6 shadow-[0_8px_30px_rgba(43,33,24,0.03)] hover:shadow-[0_16px_40px_rgba(43,33,24,0.08)] hover:border-[#B88932] transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
+            >
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] text-[#B88932] group-hover:bg-[#B88932]/10 group-hover:border-[#B88932]/30 group-hover:scale-110 transition-all duration-300">
+                <MessageCircle className="h-7 w-7" />
+              </div>
+
+              <div className="space-y-2 flex-1 flex flex-col justify-center">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#B88932] font-mono">
+                  INSTANT CHAT
+                </span>
+                <h3 className="font-serif text-2xl font-bold text-[#3A2A1E] group-hover:text-[#B88932] transition-colors">
+                  WHATSAPP US
+                </h3>
+                <p className="text-xs text-[#75695C] pt-1">
+                  Quick response for event & stall enquiries
+                </p>
+                <p className="font-mono text-sm font-semibold text-[#2B2118] pt-1">
+                  +91 70103 77731
+                </p>
+              </div>
+
+              <div className="btn-luxury-primary w-full rounded-full py-3.5 px-6 text-xs font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2 transition-all">
+                <span>Open WhatsApp</span>
+                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </a>
+
+            {/* Card C: Call */}
+            <a
+              href="tel:7010377731"
+              className="group relative rounded-3xl border border-[#E8DED0] bg-white p-8 sm:p-10 flex flex-col justify-between items-center text-center space-y-6 shadow-[0_8px_30px_rgba(43,33,24,0.03)] hover:shadow-[0_16px_40px_rgba(43,33,24,0.08)] hover:border-[#B88932] transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
+            >
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] text-[#B88932] group-hover:bg-[#B88932]/10 group-hover:border-[#B88932]/30 group-hover:scale-110 transition-all duration-300">
+                <Phone className="h-7 w-7" />
+              </div>
+
+              <div className="space-y-2 flex-1 flex flex-col justify-center">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#B88932] font-mono">
+                  DIRECT PHONE
+                </span>
+                <h3 className="font-serif text-2xl font-bold text-[#3A2A1E] group-hover:text-[#B88932] transition-colors">
+                  CALL US
+                </h3>
+                <p className="text-xs text-[#75695C] pt-1">
+                  Speak directly with our executive desk
+                </p>
+                <p className="font-mono text-sm font-semibold text-[#2B2118] pt-1">
+                  +91 70103 77731
+                </p>
+              </div>
+
+              <div className="btn-luxury-primary w-full rounded-full py-3.5 px-6 text-xs font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2 transition-all">
+                <span>Call Now</span>
+                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </a>
           </div>
         </Container>
       </Section>

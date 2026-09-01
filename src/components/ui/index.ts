@@ -13,3 +13,7 @@ export * from './StatCard';
 export * from './StatusBadge';
 export * from './DataTable';
 export * from './Accordion';
+export * from './label';
+export * from './avatar';
+export * from './tooltip';
+export * from './sheet';
