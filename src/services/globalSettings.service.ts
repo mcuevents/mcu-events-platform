@@ -19,7 +19,7 @@ import {
 export const defaultGeneralSettings: GeneralSettings = {
   siteName: 'MCU Creations',
   siteDescription:
-    'MCU (Mentor Crew Units) Creations is a Coimbatore-based startup founded in 2026, focused on event management and digital engagement. We aim to create meaningful event experiences while helping businesses build stronger connections through social media platforms such as Instagram and Facebook.',
+    'MCU (Mentor Crew Units) Creations is a Coimbatore-based startup founded in 2026, focused exclusively on event management, event planning, venue coordination, and delivering memorable event experiences.',
   companyName: 'MCU (Mentor Crew Units) Creations',
   defaultLanguage: 'en',
   defaultTimezone: 'Asia/Kolkata',
@@ -32,7 +32,7 @@ export const defaultContactSettings: ContactSettings = {
   primaryEmail: 'mcuevents26@gmail.com',
   secondaryEmail: 'events@mcucreations.com',
   whatsappNumber: '7010377731',
-  whatsappDefaultMessage: 'Hello MCU Creations, I would like to enquire about your event management and digital marketing services.',
+  whatsappDefaultMessage: 'Hello MCU Creations, I would like to enquire about your event management services.',
   businessAddress: '3rd Floor, Masakalipalayam, Ram Lakshman Nagar, Uppilipalayam',
   city: 'Coimbatore',
   state: 'Tamil Nadu',
@@ -78,49 +78,49 @@ export const defaultSocialSettings: SocialAccountItem[] = [
     id: 'soc-4',
     platform: 'youtube',
     platformName: 'YouTube',
-    url: 'https://youtube.com/@mcucreations',
+    url: 'https://youtube.com/mcucreations',
     enabled: true,
     displayOrder: 4,
   },
 ];
 
 export const defaultBrandingSettings: BrandingSettings = {
-  primaryLogoUrl: '/logo.jpeg',
-  footerLogoUrl: '/logo.jpeg',
-  faviconUrl: '/favicon.ico',
-  lightLogoUrl: '/logo.jpeg',
-  darkLogoUrl: '/logo.jpeg',
+  primaryLogoUrl: '/logo.png',
+  footerLogoUrl: '/logo.png',
+  faviconUrl: '/favicon.svg',
+  lightLogoUrl: '/logo.png',
+  darkLogoUrl: '/logo.png',
   brandColors: {
-    primaryColor: '#E6A817', // Gold Accent
-    secondaryColor: '#0B0F19', // Dark Slate
-    accentColor: '#3B82F6', // Blue Accent
+    primaryColor: '#B88932',
+    secondaryColor: '#2B2118',
+    accentColor: '#D4B06A',
   },
 };
 
 export const defaultFooterSettings: FooterSettings = {
   footerDescription:
-    'MCU (Mentor Crew Units) Creations is a Coimbatore-based startup founded in 2026, focused on event management and digital engagement across social media platforms like Instagram and Facebook.',
-  copyrightText: '© {year} MCU (Mentor Crew Units) Creations. All rights reserved. Founded in 2026.',
+    'MCU (Mentor Crew Units) Creations is a Coimbatore-based event-management startup founded in 2026, focused on planning, coordinating, and delivering memorable event experiences.',
+  copyrightText: '© 2026 MCU (Mentor Crew Units) Creations. All rights reserved. Founded in 2026.',
   ctaEnabled: true,
-  ctaText: 'Have an Upcoming Event or Campaign?',
+  ctaText: 'Planning an Event in Coimbatore?',
   ctaUrl: '/contact',
   linkGroups: [
     {
       id: 'grp-1',
-      groupTitle: 'Company',
+      groupTitle: 'Navigation',
       links: [
-        { id: 'lnk-1', label: 'About Us', url: '/about', displayOrder: 1, isPublished: true },
-        { id: 'lnk-2', label: 'Services', url: '/services', displayOrder: 2, isPublished: true },
-        { id: 'lnk-3', label: 'Contact Us', url: '/contact', displayOrder: 3, isPublished: true },
+        { id: 'lnk-1', label: 'Home', url: '/', displayOrder: 1, isPublished: true },
+        { id: 'lnk-2', label: 'About Us', url: '/about', displayOrder: 2, isPublished: true },
+        { id: 'lnk-3', label: 'Services', url: '/services', displayOrder: 3, isPublished: true },
       ],
     },
     {
       id: 'grp-2',
-      groupTitle: 'Services',
+      groupTitle: 'Capabilities',
       links: [
-        { id: 'lnk-4', label: 'Event Management', url: '/services', displayOrder: 1, isPublished: true },
-        { id: 'lnk-5', label: 'Digital Marketing', url: '/services', displayOrder: 2, isPublished: true },
-        { id: 'lnk-6', label: 'Social Media Engagement', url: '/services', displayOrder: 3, isPublished: true },
+        { id: 'lnk-4', label: 'Concept & Planning', url: '/services', displayOrder: 1, isPublished: true },
+        { id: 'lnk-5', label: 'Event Coordination', url: '/services', displayOrder: 2, isPublished: true },
+        { id: 'lnk-6', label: 'On-Ground Management', url: '/services', displayOrder: 3, isPublished: true },
       ],
     },
     {
@@ -128,44 +128,43 @@ export const defaultFooterSettings: FooterSettings = {
       groupTitle: 'Get in Touch',
       links: [
         { id: 'lnk-7', label: 'Upcoming Events', url: '/events', displayOrder: 1, isPublished: true },
-        { id: 'lnk-8', label: 'Business Enquiries', url: '/contact', displayOrder: 2, isPublished: true },
+        { id: 'lnk-8', label: 'Contact Us', url: '/contact', displayOrder: 2, isPublished: true },
       ],
     },
   ],
 };
 
 export const defaultSEOSettings: GlobalSEOSettings = {
-  defaultTitle: 'MCU (Mentor Crew Units) Creations | Event Management & Digital Marketing',
+  defaultTitle: 'MCU (Mentor Crew Units) Creations | Event Management',
   titleTemplate: '%s | MCU Creations',
   defaultMetaDescription:
-    'MCU (Mentor Crew Units) Creations is a Coimbatore-based startup founded in 2026, focused on event management and social media engagement across Instagram and Facebook.',
+    'MCU (Mentor Crew Units) Creations is a Coimbatore-based startup founded in 2026, focused on event management, event planning, and on-ground coordination.',
   defaultKeywords: [
     'MCU Creations',
     'MCU (Mentor Crew Units) Creations',
     'Event Management Coimbatore',
-    'Digital Marketing Coimbatore',
-    'Social Media Engagement',
-    'Instagram Marketing',
-    'Facebook Campaigns',
+    'Event Planning Coimbatore',
+    'Corporate Events Tamil Nadu',
+    'Expos and Conclaves Coimbatore',
   ],
-  defaultOgImage: '/logo.jpeg',
+  defaultOgImage: '/logo.png',
   twitterCardType: 'summary_large_image',
-  twitterImage: '/logo.jpeg',
+  twitterImage: '/logo.png',
   canonicalBaseUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://mcucreations.com',
   robotsAllowAll: true,
   pageRules: [
     {
       path: '/',
       pageName: 'Home',
-      metaTitle: 'MCU (Mentor Crew Units) Creations — Event Management & Digital Engagement',
-      metaDescription: 'Coimbatore-based startup founded in 2026, focused on event management and digital engagement.',
+      metaTitle: 'MCU (Mentor Crew Units) Creations — Event Management',
+      metaDescription: 'Coimbatore-based startup founded in 2026, focused on event management and coordination.',
       ogTitle: 'MCU (Mentor Crew Units) Creations',
-      ogDescription: 'Event management and digital engagement startup based in Coimbatore.',
+      ogDescription: 'Event management startup based in Coimbatore.',
     },
     {
       path: '/events',
       pageName: 'Events Directory',
-      metaTitle: 'Events & Expos | MCU Creations',
+      metaTitle: 'Events & Calendar | MCU Creations',
       metaDescription: 'Explore events and conferences organized and managed by MCU Creations.',
     },
     {
@@ -178,13 +177,13 @@ export const defaultSEOSettings: GlobalSEOSettings = {
       path: '/services',
       pageName: 'Services & Capabilities',
       metaTitle: 'Services & Capabilities | MCU Creations',
-      metaDescription: 'Event management, digital marketing, and social media engagement for Instagram and Facebook.',
+      metaDescription: 'Event management, concept planning, vendor coordination, and on-ground execution.',
     },
     {
       path: '/contact',
       pageName: 'Contact Us',
       metaTitle: 'Contact Us | MCU (Mentor Crew Units) Creations',
-      metaDescription: 'Connect with MCU Creations in Coimbatore for event management and social media marketing.',
+      metaDescription: 'Connect with MCU Creations in Coimbatore for event management and planning.',
     },
   ],
 };

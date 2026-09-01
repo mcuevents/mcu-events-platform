@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { EntityPartner } from '@/types/partners';
-import { Container, Section, Card, Button, Input, Textarea, Select, Modal, Badge } from '@/components/ui';
+import { Container, Section, Input, Textarea, Select, Modal } from '@/components/ui';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { PartnerCard } from '@/components/shared/PartnerCard';
 import { submitEnquiry } from '@/services/enquiries.service';
@@ -10,41 +10,35 @@ import { Award, CheckCircle2, Send, ArrowRight } from 'lucide-react';
 
 const SPONSOR_TIERS = [
   {
-    tier: 'Platinum Title Sponsor',
-    tag: 'Highest Brand Equity',
-    badgeVariant: 'gold' as const,
+    tier: 'Platinum Title Partner',
+    tag: 'Prominent Event Visibility',
     deliverables: [
-      'Event Co-Branding ("Presented by [Your Brand]") on all collateral',
-      'Prime 36 Sq.m Central Island Pavilion at Main Hall Entrance',
-      'Keynote Stage Address (15 Mins) during Inaugural Plenary',
-      'Logo on 500,000+ Physical Delegate Invites & Metro Billboards',
-      'Dedicated 10-Reel Campaign reaching 2.5M+ Target Impressions',
-      '20 VIP Banquet Passes + Speaker Lounge Access',
+      'Event Co-Branding on all primary entrance arches and stage backdrops',
+      'Prime central exhibition pavilion at main hall entrance',
+      'Plenary keynote address opportunity during event inaugural session',
+      'Prominent branding across official passes, badge lanyards, and event schedules',
+      'VIP passes and dedicated lounge access for leadership delegations',
     ],
   },
   {
-    tier: 'Gold Associate Sponsor',
-    tag: 'Prime Footfall & Stage Exposure',
-    badgeVariant: 'gold' as const,
+    tier: 'Gold Associate Partner',
+    tag: 'Prime Floor & Stage Presence',
     deliverables: [
-      'Main Stage Backdrop & Registration Gate Arch Logo',
-      'Prime 18 Sq.m Corner Exhibition Stall Space',
-      'Panel Discussion Seat in Industry Keynote Track',
-      'Logo on all Digital Ads, Website & Email Blasts',
-      '5 Dedicated Reel Campaigns reaching 1M+ Impressions',
-      '10 VIP Banquet Passes',
+      'Main stage backdrop logo placement and seminar hall banner display',
+      'Prime corner exhibition space in main trade concourse',
+      'Participation in industry panel discussion track',
+      'Logo on all event schedules, print materials, and official website listing',
+      'VIP passes for company executives',
     ],
   },
   {
-    tier: 'Silver Sponsor',
-    tag: 'Focused Brand Alignment',
-    badgeVariant: 'green' as const,
+    tier: 'Silver Partner',
+    tag: 'Targeted Gathering Alignment',
     deliverables: [
-      'Official Delegate Lanyard or Badge Branding',
-      'Standard 9 Sq.m Octanorm Stall Space',
-      'Logo on Event Website Sponsor Wall & Catalog',
-      'Social Media Announcement Post & Story Highlights',
-      '5 Delegate Passes',
+      'Official delegate badge or handbook branding presence',
+      'Standard exhibition space in designated thematic zone',
+      'Logo on official event directory and web partner wall',
+      'Delegate passes for team members',
     ],
   },
 ];
@@ -81,7 +75,7 @@ export function SponsorsClientWrapper({ sponsors }: SponsorsClientWrapperProps) 
         email,
         phone,
         companyName,
-        subject: `Sponsorship Deck Request: ${selectedTier}`,
+        subject: `Sponsorship Enquiry: ${selectedTier}`,
         message: `${message}\nRequested Tier: ${selectedTier}`,
       });
 
@@ -106,136 +100,164 @@ export function SponsorsClientWrapper({ sponsors }: SponsorsClientWrapperProps) 
   };
 
   return (
-    <div>
+    <div className="bg-[#FCFBF8]">
       {/* 1. Hero */}
-      <div className="py-12 lg:py-16 bg-dark-950 border-b border-dark-800">
+      <div className="py-16 lg:py-24 luxury-hero-bg border-b border-[#E8DED0]">
         <Container>
-          <div className="max-w-3xl space-y-4">
-            <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase bg-brand-500/10 text-brand-400 border border-brand-500/20">
-              Corporate Sponsorship
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-black text-white">
-              Power Flagship Expos & Reach <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-amber-300">Millions</span>
+          <div className="max-w-3xl space-y-6">
+            <div className="inline-flex items-center gap-3">
+              <span className="font-mono text-xs font-semibold text-[#B88932]">01</span>
+              <span className="text-[#D4B06A]/60 text-xs">/</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#B88932]">
+                EVENT SPONSORSHIP
+              </span>
+              <div className="h-px w-8 bg-[#D4B06A]/60" />
+            </div>
+
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-[3.5rem] font-normal text-[#3A2A1E] leading-tight">
+              Sponsorship & <br />
+              <span className="italic font-normal text-[#B88932]">Brand Presence.</span>
             </h1>
-            <p className="text-base sm:text-lg text-dark-300 leading-relaxed">
-              Position your brand as an industry leader. Gain omni-channel visibility across our physical exhibitions, press media, and viral digital channels.
+
+            <p className="text-base sm:text-lg text-[#75695C] leading-relaxed max-w-2xl">
+              Elevate your organization's presence across premier business gatherings and conventions managed by MCU Creations in Coimbatore and across Tamil Nadu.
             </p>
+
             <div className="pt-2 flex flex-wrap gap-4">
-              <Button
-                variant="primary"
-                size="lg"
+              <button
+                type="button"
+                className="btn-luxury-primary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2"
                 onClick={() => handleRequestDeck()}
-                rightIcon={<ArrowRight className="h-4 w-4" />}
               >
-                Request Sponsorship Kit
-              </Button>
+                <span>Request Sponsorship Scope</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </Container>
       </div>
 
-      {/* 2. Tier Matrix */}
-      <Section spacing="md">
-        <Container space-y-12>
+      {/* 2. Sponsorship Tiers Grid */}
+      <Section spacing="lg" className="bg-[#FCFBF8]">
+        <Container className="space-y-12">
           <SectionHeader
-            badge="Sponsorship Packages"
-            title="Partnership Tiers & Impact"
-            subtitle="Explore high-impact branding deliverables designed to maximize corporate return on marketing investment."
+            number="02"
+            badge="TIERS"
+            title="Sponsorship Opportunities"
+            subtitle="Explore high-impact presence options designed to align your brand with regional business audiences."
+            align="left"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {SPONSOR_TIERS.map((tier) => (
-              <Card key={tier.tier} className="flex flex-col justify-between p-6 border-dark-800 hover:border-brand-500/40 transition-colors">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {SPONSOR_TIERS.map((tier, idx) => (
+              <div
+                key={tier.tier}
+                className="rounded-3xl border border-[#E8DED0] bg-white p-8 flex flex-col justify-between shadow-sm hover:border-[#B88932] transition-all space-y-6"
+              >
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <Badge variant={tier.badgeVariant}>{tier.tag}</Badge>
-                    <Award className="h-5 w-5 text-brand-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white">{tier.tier}</h3>
+                  <div className="flex items-center justify-between pb-3 border-b border-[#E8DED0]">
+                    <span className="font-serif text-2xl font-light text-[#D4B06A]">
+                      0{idx + 1}
+                    </span>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-[#B88932] font-mono">
+                      {tier.tag}
+                    </span>
                   </div>
 
-                  <div className="pt-4 border-t border-dark-800 space-y-2.5">
-                    {tier.deliverables.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-dark-300">
-                        <CheckCircle2 className="h-4 w-4 text-brand-400 shrink-0 mt-0.5" />
+                  <h3 className="font-serif text-xl font-bold text-[#3A2A1E]">
+                    {tier.tier}
+                  </h3>
+
+                  <ul className="space-y-3 pt-2">
+                    {tier.deliverables.map((item, dIdx) => (
+                      <li key={dIdx} className="flex items-start gap-2.5 text-xs text-[#75695C] leading-relaxed">
+                        <CheckCircle2 className="h-4 w-4 text-[#B88932] shrink-0 mt-0.5" />
                         <span>{item}</span>
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-dark-800">
-                  <Button
-                    variant="primary"
-                    className="w-full"
+                <div className="pt-6 border-t border-[#E8DED0]">
+                  <button
+                    type="button"
+                    className="w-full btn-luxury-secondary rounded-full py-3 text-xs font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2"
                     onClick={() => handleRequestDeck(tier.tier)}
                   >
-                    Get {tier.tier.split(' ')[0]} Proposal
-                  </Button>
+                    <span>Enquire for {tier.tier.split(' ')[0]}</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </button>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
         </Container>
       </Section>
 
-      {/* 3. Current Sponsors Showcase */}
-      <Section spacing="md" className="bg-dark-950/60 border-t border-b border-dark-800">
-        <Container space-y-10>
-          <SectionHeader
-            badge="Brand Alliances"
-            title="Our Valued Event Sponsors"
-            subtitle="Trusted by industry leaders and visionary financial institutions across India."
-          />
+      {/* 3. Partner Directory */}
+      {sponsors && sponsors.length > 0 && (
+        <Section spacing="lg" className="bg-white border-t border-[#E8DED0]">
+          <Container className="space-y-12">
+            <SectionHeader
+              number="03"
+              badge="DIRECTORY"
+              title="Event Brand Partners"
+              subtitle="Organizations and enterprise brands supporting gatherings managed by MCU Creations."
+              align="left"
+            />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sponsors.map((sponsor) => (
-              <PartnerCard key={sponsor.id} partner={sponsor} />
-            ))}
-          </div>
-        </Container>
-      </Section>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {sponsors.map((sponsor) => (
+                <PartnerCard key={sponsor.id} partner={sponsor} />
+              ))}
+            </div>
+          </Container>
+        </Section>
+      )}
 
-      {/* 4. Sponsorship Kit Request Modal */}
+      {/* 4. Sponsorship Modal */}
       <Modal
         isOpen={isModalOpen}
         onClose={submitted ? handleReset : () => setIsModalOpen(false)}
-        title={submitted ? 'Deck Request Sent!' : 'Request Sponsorship Kit & Floor Plan'}
+        title={submitted ? 'Enquiry Received!' : 'Request Sponsorship Scope'}
         description={
           submitted
-            ? 'Our partnership director will contact you with the complete prospectus.'
-            : 'Enter your brand details to receive the comprehensive sponsorship kit.'
+            ? 'Our team will review your requirements and share detailed event schedules.'
+            : 'Fill in your details below to discuss partnership deliverables.'
         }
         size="md"
       >
         {submitted ? (
           <div className="text-center py-6 space-y-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/10 text-brand-400 mx-auto">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#B88932]/10 text-[#B88932] border border-[#B88932]/25 mx-auto">
               <CheckCircle2 className="h-8 w-8" />
             </div>
-            <h3 className="text-lg font-bold text-white">Prospectus Dispatched</h3>
-            <p className="text-xs text-dark-300 max-w-sm mx-auto">
-              Thank you, <span className="text-white font-medium">{fullName}</span> from{' '}
-              <span className="text-white font-medium">{companyName || 'your brand'}</span>. The sponsorship deck for <span className="text-brand-400 font-bold">{selectedTier}</span> has been dispatched to <span className="text-dark-200">{email}</span>.
+            <h3 className="font-serif text-lg font-bold text-[#3A2A1E]">Sponsorship Enquiry Logged</h3>
+            <p className="text-xs text-[#75695C] max-w-sm mx-auto">
+              Thank you, <span className="text-[#3A2A1E] font-semibold">{fullName}</span> from{' '}
+              <span className="text-[#3A2A1E] font-semibold">{companyName}</span>. We will share sponsorship documentation for <span className="text-[#B88932] font-bold">{selectedTier}</span> to <span className="font-mono text-[#3A2A1E]">{email}</span>.
             </p>
-            <Button variant="primary" className="w-full" onClick={handleReset}>
+            <button
+              type="button"
+              className="w-full btn-luxury-primary rounded-full py-3 text-xs font-semibold uppercase tracking-wider"
+              onClick={handleReset}
+            >
               Close Window
-            </Button>
+            </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Input
                 label="Full Name *"
-                placeholder="e.g. M. Sundar"
+                placeholder="e.g. Anand Ram"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
               />
               <Input
-                label="Corporate Brand Name *"
-                placeholder="e.g. Apex Global"
+                label="Company / Brand Name *"
+                placeholder="e.g. Apex Global Industries"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
                 required
@@ -246,15 +268,15 @@ export function SponsorsClientWrapper({ sponsors }: SponsorsClientWrapperProps) 
               <Input
                 label="Official Email *"
                 type="email"
-                placeholder="marketing@apexglobal.com"
+                placeholder="anand@apexglobal.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <Input
-                label="Phone / WhatsApp Number *"
+                label="Phone Number *"
                 type="tel"
-                placeholder="+91 98765 43210"
+                placeholder="7010377731"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
@@ -262,32 +284,36 @@ export function SponsorsClientWrapper({ sponsors }: SponsorsClientWrapperProps) 
             </div>
 
             <Select
-              label="Preferred Sponsorship Category"
+              label="Selected Sponsorship Tier"
               value={selectedTier}
               onChange={(e) => setSelectedTier(e.target.value)}
               options={SPONSOR_TIERS.map((t) => ({ value: t.tier, label: t.tier }))}
             />
 
             <Textarea
-              label="Specific Branding Goals / Queries"
-              placeholder="Tell us about your target demographic, preferred expo locations, or custom stage requirements..."
+              label="Event Specifics & Objectives"
+              placeholder="Tell us about the event type, target sector, or particular branding requirements..."
               rows={3}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
 
-            <div className="pt-2 flex justify-end gap-3">
-              <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)}>
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                variant="primary"
-                isLoading={loading}
-                rightIcon={<Send className="h-4 w-4" />}
+            <div className="pt-2 flex justify-end gap-3 border-t border-[#E8DED0]">
+              <button
+                type="button"
+                className="px-5 py-2.5 rounded-full text-xs font-semibold text-[#75695C] hover:text-[#3A2A1E]"
+                onClick={() => setIsModalOpen(false)}
               >
-                Send Sponsorship Enquiry
-              </Button>
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-luxury-primary rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-wider flex items-center gap-2"
+              >
+                {loading ? <span>Sending...</span> : <span>Send Enquiry</span>}
+                <Send className="h-3.5 w-3.5" />
+              </button>
             </div>
           </form>
         )}

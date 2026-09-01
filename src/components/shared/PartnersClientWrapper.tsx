@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { EntityPartner } from '@/types/partners';
-import { Container, Section, Button, Input, Textarea, Select, Modal } from '@/components/ui';
+import { Container, Section, Input, Textarea, Select, Modal } from '@/components/ui';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { PartnerCard } from '@/components/shared/PartnerCard';
 import { submitEnquiry } from '@/services/enquiries.service';
@@ -59,44 +59,55 @@ export function PartnersClientWrapper({ partners }: PartnersClientWrapperProps) 
   };
 
   return (
-    <div>
+    <div className="bg-[#FCFBF8]">
       {/* 1. Hero */}
-      <div className="py-12 lg:py-16 bg-dark-950 border-b border-dark-800">
+      <div className="py-16 lg:py-24 luxury-hero-bg border-b border-[#E8DED0]">
         <Container>
-          <div className="max-w-3xl space-y-4">
-            <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase bg-brand-500/10 text-brand-400 border border-brand-500/20">
-              Strategic Alliances
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-black text-white">
-              Collaborate & Co-Create <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-amber-300">Mega Summits</span>
+          <div className="max-w-3xl space-y-6">
+            <div className="inline-flex items-center gap-3">
+              <span className="font-mono text-xs font-semibold text-[#B88932]">01</span>
+              <span className="text-[#D4B06A]/60 text-xs">/</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#B88932]">
+                COLLABORATION
+              </span>
+              <div className="h-px w-8 bg-[#D4B06A]/60" />
+            </div>
+
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-[3.5rem] font-normal text-[#3A2A1E] leading-tight">
+              Event Alliances & <br />
+              <span className="italic font-normal text-[#B88932]">Venue Collaborations.</span>
             </h1>
-            <p className="text-base sm:text-lg text-dark-300 leading-relaxed">
-              We partner with premier trade exhibition centers, trade chambers, media organizations, and industry bodies to produce landmark conventions across South India.
+
+            <p className="text-base sm:text-lg text-[#75695C] leading-relaxed max-w-2xl">
+              MCU (Mentor Crew Units) Creations collaborates with convention centers, trade associations, and suppliers to deliver well-organized gathering experiences across Coimbatore and Tamil Nadu.
             </p>
+
             <div className="pt-2 flex flex-wrap gap-4">
-              <Button
-                variant="primary"
-                size="lg"
+              <button
+                type="button"
+                className="btn-luxury-primary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2"
                 onClick={() => setIsModalOpen(true)}
-                rightIcon={<ArrowRight className="h-4 w-4" />}
               >
-                Propose a Partnership
-              </Button>
+                <span>Propose a Collaboration</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </Container>
       </div>
 
       {/* 2. Partner Network Grid */}
-      <Section spacing="md">
-        <Container space-y-10>
+      <Section spacing="lg" className="bg-[#FCFBF8]">
+        <Container className="space-y-12">
           <SectionHeader
-            badge="Ecosystem"
-            title="Institutional & Venue Partners"
-            subtitle="The foundational network enabling MCU Creations to deliver stadium-scale event excellence."
+            number="02"
+            badge="ECOSYSTEM"
+            title="Institutional & Venue Collaborators"
+            subtitle="The network supporting MCU Creations in delivering reliable event management."
+            align="left"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {partners.map((partner) => (
               <PartnerCard key={partner.id} partner={partner} />
             ))}
@@ -105,24 +116,28 @@ export function PartnersClientWrapper({ partners }: PartnersClientWrapperProps) 
       </Section>
 
       {/* 3. Co-Hosting Model Banner */}
-      <Section spacing="sm" className="bg-dark-950/70 border-t border-b border-dark-800">
+      <Section spacing="lg" className="bg-white border-t border-b border-[#E8DED0]">
         <Container>
-          <div className="rounded-2xl bg-gradient-to-r from-dark-900 via-dark-900 to-dark-950 border border-dark-800 p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-2 max-w-xl">
-              <h3 className="text-2xl font-bold text-white">Looking to Co-Host an Industry Expo?</h3>
-              <p className="text-sm text-dark-300">
-                Are you an association or chamber looking for turnkey event management, ticket funnels, and sponsor monetization? Partner with MCU Creations.
+          <div className="rounded-3xl border border-[#E8DED0] bg-[#FCFBF8] p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
+            <div className="space-y-2 max-w-xl text-center md:text-left">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#B88932]">
+                EVENT COLLABORATION
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#3A2A1E]">
+                Planning a Joint Event or Expo?
+              </h3>
+              <p className="text-xs sm:text-sm text-[#75695C] leading-relaxed">
+                Connect with MCU Creations for end-to-end planning, floor management, and on-ground execution.
               </p>
             </div>
-            <Button
-              variant="primary"
-              size="lg"
-              className="shrink-0"
+            <button
+              type="button"
+              className="btn-luxury-primary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2 shrink-0"
               onClick={() => setIsModalOpen(true)}
-              rightIcon={<Handshake className="h-4 w-4" />}
             >
-              Start Co-Hosting Dialogue
-            </Button>
+              <span>Connect with Our Team</span>
+              <Handshake className="h-4 w-4" />
+            </button>
           </div>
         </Container>
       </Section>
@@ -131,27 +146,31 @@ export function PartnersClientWrapper({ partners }: PartnersClientWrapperProps) 
       <Modal
         isOpen={isModalOpen}
         onClose={submitted ? handleReset : () => setIsModalOpen(false)}
-        title={submitted ? 'Partnership Enquiry Received!' : 'Propose a Partnership'}
+        title={submitted ? 'Enquiry Received!' : 'Propose an Event Collaboration'}
         description={
           submitted
-            ? 'Our leadership team will reach out to schedule an introductory alignment call.'
-            : 'Fill in your organization details to explore co-hosting or strategic alliance.'
+            ? 'Our team will review your requirements and reach out promptly.'
+            : 'Fill in your details below to discuss collaboration opportunities.'
         }
         size="md"
       >
         {submitted ? (
           <div className="text-center py-6 space-y-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/10 text-brand-400 mx-auto">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#B88932]/10 text-[#B88932] border border-[#B88932]/25 mx-auto">
               <CheckCircle2 className="h-8 w-8" />
             </div>
-            <h3 className="text-lg font-bold text-white">Proposal Received</h3>
-            <p className="text-xs text-dark-300 max-w-sm mx-auto">
-              Thank you, <span className="text-white font-medium">{fullName}</span> from{' '}
-              <span className="text-white font-medium">{companyName}</span>. We will review your collaboration proposal and get back to you shortly.
+            <h3 className="font-serif text-lg font-bold text-[#3A2A1E]">Collaboration Proposal Logged</h3>
+            <p className="text-xs text-[#75695C] max-w-sm mx-auto">
+              Thank you, <span className="text-[#3A2A1E] font-semibold">{fullName}</span> from{' '}
+              <span className="text-[#3A2A1E] font-semibold">{companyName}</span>. We will review your enquiry and respond to <span className="font-mono text-[#3A2A1E]">{email}</span>.
             </p>
-            <Button variant="primary" className="w-full" onClick={handleReset}>
+            <button
+              type="button"
+              className="w-full btn-luxury-primary rounded-full py-3 text-xs font-semibold uppercase tracking-wider"
+              onClick={handleReset}
+            >
               Close Window
-            </Button>
+            </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -164,7 +183,7 @@ export function PartnersClientWrapper({ partners }: PartnersClientWrapperProps) 
                 required
               />
               <Input
-                label="Organization / Chamber Name *"
+                label="Organization / Company Name *"
                 placeholder="e.g. Regional Trade Association"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
@@ -184,7 +203,7 @@ export function PartnersClientWrapper({ partners }: PartnersClientWrapperProps) 
               <Input
                 label="Phone Number *"
                 type="tel"
-                placeholder="+91 98421 12345"
+                placeholder="7010377731"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
@@ -192,37 +211,41 @@ export function PartnersClientWrapper({ partners }: PartnersClientWrapperProps) 
             </div>
 
             <Select
-              label="Partnership Category"
+              label="Collaboration Focus"
               value={partnershipType}
               onChange={(e) => setPartnershipType(e.target.value)}
               options={[
-                { value: 'Venue / Infrastructure', label: 'Venue / Convention Center Alliance' },
-                { value: 'Trade Chamber / Association', label: 'Trade Chamber / Industry Association' },
-                { value: 'Media & Broadcasting Network', label: 'Media & Broadcasting Network' },
-                { value: 'Co-Hosted Expo / Summit', label: 'Joint / Co-Hosted Expo Proposal' },
+                { value: 'Venue / Infrastructure', label: 'Venue / Convention Center Collaboration' },
+                { value: 'Trade Chamber / Association', label: 'Trade Chamber / Association Alignment' },
+                { value: 'Vendor & Staging Partner', label: 'Vendor & Staging Partner' },
+                { value: 'Joint Event Management', label: 'Joint Event Management' },
               ]}
             />
 
             <Textarea
-              label="Collaboration Synopsis"
-              placeholder="Outline your proposal, proposed summit dates, venue capacity, or delegation strength..."
+              label="Collaboration Scope"
+              placeholder="Outline your event objectives, proposed dates, venue preferences, or delegation requirements..."
               rows={3}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
 
-            <div className="pt-2 flex justify-end gap-3">
-              <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)}>
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                variant="primary"
-                isLoading={loading}
-                rightIcon={<Send className="h-4 w-4" />}
+            <div className="pt-2 flex justify-end gap-3 border-t border-[#E8DED0]">
+              <button
+                type="button"
+                className="px-5 py-2.5 rounded-full text-xs font-semibold text-[#75695C] hover:text-[#3A2A1E]"
+                onClick={() => setIsModalOpen(false)}
               >
-                Submit Proposal
-              </Button>
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-luxury-primary rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-wider flex items-center gap-2"
+              >
+                {loading ? <span>Submitting...</span> : <span>Submit Proposal</span>}
+                <Send className="h-3.5 w-3.5" />
+              </button>
             </div>
           </form>
         )}
