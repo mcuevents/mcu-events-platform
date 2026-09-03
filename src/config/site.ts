@@ -4,7 +4,7 @@ export const siteConfig = {
   foundedYear: 2026,
   description:
     'MCU (Mentor Crew Units) Creations is a Coimbatore-based startup founded in 2026, focused on event management and creating meaningful experiences for businesses, organizations and communities.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://mcucreations.com',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://mcu-creations.com',
   ogImage: '/logo.jpeg',
   contacts: {
     primaryPhone: '7010377731',
@@ -26,7 +26,7 @@ export const siteConfig = {
    * Helper function to generate clean canonical URLs for SEO
    */
   getCanonicalUrl: (path: string = ''): string => {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mcucreations.com';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mcu-creations.com';
     const cleanPath = path.startsWith('/') ? path : `/${path}`;
     return `${baseUrl.replace(/\/$/, '')}${cleanPath}`;
   },
