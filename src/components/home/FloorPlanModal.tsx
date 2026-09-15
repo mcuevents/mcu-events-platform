@@ -90,9 +90,9 @@ export const FloorPlanModal: React.FC<FloorPlanModalProps> = ({ isOpen, onClose 
           <div className="flex items-center gap-2 font-mono font-bold text-[#2B2118]">
             <Phone className="h-3.5 w-3.5 text-[#B88932]" />
             <span>Book Stalls:</span>
-            <a href="tel:7010377731" className="hover:text-[#B88932] transition-colors">7010377731</a>
+            <a href="tel:7010667500" className="hover:text-[#B88932] transition-colors">7010667500</a>
             <span>/</span>
-            <a href="tel:700667500" className="hover:text-[#B88932] transition-colors">700667500</a>
+            <a href="tel:7010377731" className="hover:text-[#B88932] transition-colors">7010377731</a>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ export const siteConfig = {
   ogImage: '/logo.png',
   contacts: {
     primaryPhone: '7010377731',
-    secondaryPhone: '700667500',
+    secondaryPhone: '7010667500',
     phone: '7010377731',
     email: 'mcuevents26@gmail.com',
     address: '3rd Floor, Masakalipalayam, Ram Lakshman Nagar, Uppilipalayam, Coimbatore, Tamil Nadu - 641004, India',

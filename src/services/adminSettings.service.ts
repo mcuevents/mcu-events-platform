@@ -126,7 +126,7 @@ export const defaultPlatformSettings: PlatformSettings = {
   companyName: 'MCU (Mentor Crew Units) Creations',
   legalName: 'MCU (Mentor Crew Units) Creations',
   contactEmail: 'info@mcucreations.com',
-  supportPhone: '7010377731 / 700667500',
+  supportPhone: '7010377731 / 7010667500',
   headquartersAddress: '3rd Floor, Masakalipalayam, Ram Lakshman Nagar, Uppilipalayam, Coimbatore, Tamil Nadu - 641004, India',
   gstNumber: '33AAACM0192Q1ZV',
   businessHours: 'Monday – Saturday: 09:00 AM – 07:00 PM IST',

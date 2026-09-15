@@ -35,7 +35,7 @@ export const OrganizationJsonLd: React.FC = () => {
       },
       {
         '@type': 'ContactPoint',
-        telephone: '+91-700667500',
+        telephone: '+91-7010667500',
         contactType: 'customer service',
         email: siteConfig.contacts.email,
         areaServed: 'IN',

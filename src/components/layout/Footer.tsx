@@ -136,10 +136,10 @@ export const Footer: React.FC = () => {
                   </a>
                   <span className="text-[#D4B06A]">·</span>
                   <a
-                    href="tel:700667500"
+                    href="tel:7010667500"
                     className="hover:text-[#B88932] transition-colors font-mono font-bold text-xs sm:text-sm text-[#2B2118]"
                   >
-                    700667500
+                    7010667500
                   </a>
                 </div>
               </li>

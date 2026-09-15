@@ -198,8 +198,8 @@ export const Header: React.FC = () => {
                 7010377731
               </a>
               <span>/</span>
-              <a href="tel:700667500" className="hover:text-[#B88932] transition-colors">
-                700667500
+              <a href="tel:7010667500" className="hover:text-[#B88932] transition-colors">
+                7010667500
               </a>
             </div>
           </div>

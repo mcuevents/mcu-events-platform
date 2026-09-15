@@ -100,8 +100,8 @@ export function ContactClientWrapper() {
                   <a href="tel:7010377731" className="block hover:text-[#B88932] transition-colors font-mono font-bold text-[#2B2118]">
                     7010377731
                   </a>
-                  <a href="tel:700667500" className="block hover:text-[#B88932] transition-colors font-mono font-bold text-[#2B2118]">
-                    700667500
+                  <a href="tel:7010667500" className="block hover:text-[#B88932] transition-colors font-mono font-bold text-[#2B2118]">
+                    7010667500
                   </a>
                 </div>
               </div>

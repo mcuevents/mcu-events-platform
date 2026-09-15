@@ -29,7 +29,7 @@ export const defaultGeneralSettings: GeneralSettings = {
 
 export const defaultContactSettings: ContactSettings = {
   primaryPhone: '7010377731',
-  secondaryPhone: '700667500',
+  secondaryPhone: '7010667500',
   primaryEmail: 'mcuevents26@gmail.com',
   secondaryEmail: 'events@mcucreations.com',
   whatsappNumber: '7010377731',
