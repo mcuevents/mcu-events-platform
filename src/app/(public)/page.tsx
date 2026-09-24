@@ -1,139 +1,135 @@
-'use client';
-
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
+import Link from 'next/link';
 import { Container, Section } from '@/components/ui';
+import { EventGrid } from '@/components/events/EventGrid';
+import { OnezoneCountdown } from '@/components/home/OnezoneCountdown';
+import { getUpcomingEvents } from '@/services/events.service';
 import {
   Calendar,
-  MapPin,
   ArrowRight,
   Sparkles,
   CheckCircle2,
-  Phone,
-  Mail,
-  MessageCircle,
-  Building,
   Layers,
   Compass,
-  ShieldCheck,
+  Award,
   Users,
-  Grid,
-  Maximize2,
-  Clock,
+  ShieldCheck,
+  ClipboardList,
+  MapPin,
+  HeartHandshake,
 } from 'lucide-react';
-import { UpcomingEventNotification } from '@/components/home/UpcomingEventNotification';
-import { FloorPlanModal } from '@/components/home/FloorPlanModal';
+import { Metadata } from 'next';
+import { siteConfig } from '@/config/site';
 
-const categories = [
-  'Home Appliances',
-  'Electronics',
-  'Furniture',
-  'Interior',
-  'Solar Power',
-  'IT Technology',
-  'Smart Home',
-  'Automobile',
-  'Fashion',
-  'Lifestyle',
-  'Food & Beverages',
-  'Business Services',
-  'Finance & Insurance',
-  'Education',
-  'Franchise',
-];
+export const metadata: Metadata = {
+  title: 'MCU (Mentor Crew Units) Creations — Event Management',
+  description:
+    'MCU (Mentor Crew Units) Creations is a Coimbatore-based startup founded in 2026, focused on creating meaningful and professionally managed event experiences.',
+  alternates: {
+    canonical: siteConfig.getCanonicalUrl('/'),
+  },
+};
 
-export default function HomePage() {
-  const [floorPlanOpen, setFloorPlanOpen] = useState(false);
-
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+export default async function HomePage() {
+  const upcomingEvents = await getUpcomingEvents(3);
 
   return (
-    <div className="bg-[#FCFBF8] text-[#2B2118] selection:bg-[#B88932]/20 selection:text-[#2B2118]">
-      {/* ============================================================ */}
-      {/* 1. HERO SECTION (#home)                                      */}
-      {/* ============================================================ */}
-      <section
-        id="home"
-        className="relative overflow-hidden luxury-hero-bg pt-16 pb-20 lg:pt-28 lg:pb-32 border-b border-[#E8DED0]"
-      >
-        <Container size="lg">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left Column: Editorial Headline & Copy */}
+    <div className="space-y-0 bg-[#FCFBF8]">
+      {/* 1. HERO SECTION — Minimal Luxury Layout (Zero Photography) */}
+      <section className="relative overflow-hidden luxury-hero-bg pt-16 pb-20 lg:pt-24 lg:pb-32 border-b border-[#E8DED0]">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* Left Content Column */}
             <div className="lg:col-span-7 space-y-8 text-left">
-              {/* Eyebrows */}
-              <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-3">
-                  <span className="font-mono text-xs font-semibold text-[#B88932]">01</span>
-                  <span className="text-[#D4B06A]/60 text-xs">/</span>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#B88932]">
-                    MCU CREATIONS
-                  </span>
-                  <div className="h-px w-8 bg-[#D4B06A]/60" />
-                </div>
-                <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#75695C]">
-                  EVENT MANAGEMENT · COIMBATORE, TN
-                </p>
+              {/* Eyebrow badge */}
+              <div className="inline-flex items-center gap-2">
+                <span className="text-[#B88932] text-xs">◆</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B88932]">
+                  EVENT MANAGEMENT
+                </span>
               </div>
 
-              {/* Main Headline */}
-              <h1 className="font-serif text-4xl sm:text-6xl lg:text-[4.25rem] font-normal text-[#3A2A1E] leading-[1.12] tracking-tight">
-                BUILD YOUR <br />
-                <span className="italic font-normal text-[#B88932]">OWN BUSINESS</span>
+              {/* Large Elegant Serif Headline */}
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem] font-normal text-[#3A2A1E] leading-[1.12] tracking-tight">
+                Great Events<br />
+                Start With<br />
+                <span className="font-normal text-[#B88932]">Great Planning.</span>
               </h1>
 
-              {/* Concise Description */}
-              <p className="text-sm sm:text-base text-[#75695C] leading-relaxed max-w-xl">
-                MCU Creations is an emerging Expo & Exhibition Management Company focused on creating professional, engaging, and business-driven exhibitions.
+              {/* Supporting Paragraph */}
+              <p className="text-base sm:text-lg text-[#75695C] font-normal leading-relaxed max-w-xl">
+                MCU (Mentor Crew Units) Creations is a Coimbatore-based startup founded in 2026, focused on creating meaningful and professionally managed event experiences.
               </p>
 
-              {/* Action Buttons */}
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <button
-                  type="button"
-                  onClick={() => scrollTo('upcoming-event')}
-                  className="btn-luxury-primary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2 transition-all hover:shadow-md"
-                >
-                  <span>Upcoming Event</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </button>
+              {/* Call to Action Buttons */}
+              <div className="flex flex-wrap gap-4 items-center pt-2">
+                <Link href="/events">
+                  <button
+                    type="button"
+                    className="btn-luxury-primary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2"
+                  >
+                    <span>Explore Events</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </Link>
+                <Link href="/contact">
+                  <button
+                    type="button"
+                    className="btn-luxury-secondary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2"
+                  >
+                    <span>Get in Touch</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </Link>
+              </div>
 
-                <button
-                  type="button"
-                  onClick={() => scrollTo('contact')}
-                  className="btn-luxury-secondary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] transition-all hover:shadow-sm"
-                >
-                  <span>Get in Touch</span>
-                </button>
+              {/* Location & Year Badge */}
+              <div className="pt-2 flex items-center gap-3 text-xs font-medium text-[#75695C]">
+                <Calendar className="h-4 w-4 text-[#B88932]" />
+                <span>Coimbatore, Tamil Nadu • Founded in 2026</span>
               </div>
             </div>
 
-            {/* Right Column: Refined Brand Composition with Official MCU Logo */}
-            <div className="lg:col-span-5 flex items-center justify-center">
-              <div className="relative w-full max-w-md flex items-center justify-center p-8 sm:p-12">
-                {/* Extremely subtle thin gold circular accents */}
-                <div className="absolute inset-0 rounded-full border border-[#D4B06A]/20 pointer-events-none" />
-                <div className="absolute -inset-6 rounded-full border border-[#D4B06A]/10 pointer-events-none" />
-                <div className="absolute -inset-12 rounded-full border border-[#D4B06A]/5 pointer-events-none" />
+            {/* Right Side: Subtle Arched Luxury Brand Emblem (Zero Photography) */}
+            <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-md aspect-[4/5] rounded-[2.5rem] border border-[#E8DED0] bg-white p-8 sm:p-10 shadow-[0_16px_40px_rgba(43,33,24,0.03)] flex flex-col justify-between overflow-hidden">
+                {/* Thin Gold Decorative Arches */}
+                <div className="absolute top-0 right-0 w-72 h-72 rounded-full border border-[#D4B06A]/20 pointer-events-none -mr-16 -mt-16" />
+                <div className="absolute top-0 right-0 w-48 h-48 rounded-full border border-[#B88932]/15 pointer-events-none -mr-8 -mt-8" />
+                <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full border border-[#D4B06A]/20 pointer-events-none -ml-16 -mb-16" />
 
-                {/* Official Brand Logo */}
-                <div className="relative z-10 flex flex-col items-center text-center space-y-4">
-                  <Image
-                    src="/logo.png"
-                    alt="MCU (Mentor Crew Units) Creations"
-                    width={380}
-                    height={253}
-                    priority
-                    className="w-full max-w-[320px] sm:max-w-[360px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02]"
-                  />
-                  <div className="h-px w-16 bg-[#D4B06A]/60" />
-                  <span className="text-[10px] uppercase font-bold tracking-[0.24em] text-[#B88932] font-mono">
-                    COIMBATORE · TAMIL NADU
+                {/* Top Brand Tag */}
+                <div className="flex items-center justify-between relative z-10">
+                  <div className="flex items-center gap-2">
+                    <span className="font-serif text-2xl font-bold tracking-tight text-[#B88932]">MCU</span>
+                    <span className="text-[10px] font-sans tracking-widest text-[#75695C] uppercase">CREATIONS</span>
+                  </div>
+                  <span className="text-xs font-mono font-medium text-[#B88932] bg-[#B88932]/10 px-3 py-1 rounded-full border border-[#B88932]/20">
+                    EST. 2026
                   </span>
+                </div>
+
+                {/* Central Emblem Statement */}
+                <div className="space-y-4 py-8 relative z-10 text-center my-auto">
+                  <div className="w-10 h-10 rounded-full border border-[#D4B06A] mx-auto flex items-center justify-center text-[#B88932]">
+                    <Sparkles className="h-4 w-4" />
+                  </div>
+                  <div className="h-px w-12 bg-[#B88932] mx-auto" />
+                  <p className="font-serif text-2xl sm:text-3xl text-[#3A2A1E] leading-snug font-normal">
+                    Precision Planning.<br />
+                    Meaningful Experiences.
+                  </p>
+                  <p className="text-xs text-[#75695C] tracking-wide">
+                    Expositions • Conferences • Corporate Summits
+                  </p>
+                </div>
+
+                {/* Bottom Footer Line */}
+                <div className="pt-4 border-t border-[#E8DED0] flex items-center justify-between text-xs text-[#75695C] relative z-10">
+                  <span className="text-[11px] uppercase tracking-wider text-[#B88932] font-medium">
+                    Coimbatore • Tamil Nadu
+                  </span>
+                  <span className="text-[#B88932]">◆</span>
                 </div>
               </div>
             </div>
@@ -141,586 +137,474 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ============================================================ */}
-      {/* 2. ABOUT SECTION (#about)                                    */}
-      {/* ============================================================ */}
-      <Section id="about" spacing="lg" className="bg-white border-b border-[#E8DED0]">
-        <Container size="lg" className="space-y-12">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-3">
-              <span className="font-mono text-xs font-semibold text-[#B88932]">02</span>
-              <span className="text-[#D4B06A]/60 text-xs">/</span>
-              <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#B88932]">
-                ABOUT US
-              </span>
-              <div className="h-px w-8 bg-[#D4B06A]/60" />
+      {/* ONEZONE 2K26 LUXURY LIVE COUNTDOWN SECTION */}
+      <OnezoneCountdown />
+
+      {/* 2. WHAT WE DO SECTION (Immediate 4-Column Refined Bar) */}
+      <section className="bg-white border-b border-[#E8DED0] py-12 lg:py-16">
+        <Container>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E8DED0]">
+            {/* 01 Concept & Planning */}
+            <div className="p-6 sm:px-8 first:pl-0 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="font-serif text-2xl font-light text-[#D4B06A]">01</span>
+                <Compass className="h-4 w-4 text-[#B88932]" />
+              </div>
+              <h4 className="font-serif text-base font-bold text-[#3A2A1E] uppercase tracking-wide">
+                Concept & Planning
+              </h4>
+              <p className="text-xs text-[#75695C] leading-relaxed">
+                Theme formulation, space planning, agenda structuring, and milestone roadmapping.
+              </p>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#3A2A1E]">
-              Connecting Brands, <br />
-              <span className="italic font-normal text-[#B88932]">Businesses & Audiences.</span>
-            </h2>
+
+            {/* 02 Coordination */}
+            <div className="p-6 sm:px-8 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="font-serif text-2xl font-light text-[#D4B06A]">02</span>
+                <ClipboardList className="h-4 w-4 text-[#B88932]" />
+              </div>
+              <h4 className="font-serif text-base font-bold text-[#3A2A1E] uppercase tracking-wide">
+                Coordination
+              </h4>
+              <p className="text-xs text-[#75695C] leading-relaxed">
+                Venue alignment, technical vendor synchronization, and staging logistics management.
+              </p>
+            </div>
+
+            {/* 03 On-Ground Management */}
+            <div className="p-6 sm:px-8 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="font-serif text-2xl font-light text-[#D4AF6A]">03</span>
+                <ShieldCheck className="h-4 w-4 text-[#B88932]" />
+              </div>
+              <h4 className="font-serif text-base font-bold text-[#3A2A1E] uppercase tracking-wide">
+                On-ground Management
+              </h4>
+              <p className="text-xs text-[#75695C] leading-relaxed">
+                Live event supervision, timeline adherence, and dedicated venue oversight.
+              </p>
+            </div>
+
+            {/* 04 Guest Experience */}
+            <div className="p-6 sm:px-8 last:pr-0 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="font-serif text-2xl font-light text-[#D4AF6A]">04</span>
+                <Users className="h-4 w-4 text-[#B88932]" />
+              </div>
+              <h4 className="font-serif text-base font-bold text-[#3A2A1E] uppercase tracking-wide">
+                Guest Experience
+              </h4>
+              <p className="text-xs text-[#75695C] leading-relaxed">
+                Seamless attendee reception, helpdesk hospitality, and smooth delegate assistance.
+              </p>
+            </div>
           </div>
+        </Container>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-            {/* Block 1: ABOUT CODISSIA */}
-            <div className="rounded-3xl border border-[#E8DED0] bg-[#FCFBF8] p-8 sm:p-10 space-y-5 shadow-[0_8px_24px_rgba(43,33,24,0.02)] transition-all hover:border-[#B88932]">
-              <div className="flex items-center justify-between pb-4 border-b border-[#E8DED0]">
-                <div className="space-y-0.5">
-                  <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#B88932] font-mono">
-                    EXHIBITION INFRASTRUCTURE
-                  </span>
-                  <h3 className="font-serif text-2xl font-bold text-[#3A2A1E]">
-                    About CODISSIA
-                  </h3>
-                </div>
-                <Building className="h-6 w-6 text-[#B88932]/70 shrink-0" />
+      {/* 3. ABOUT MCU CREATIONS SECTION */}
+      <Section spacing="lg" className="bg-[#FCFBF8] border-b border-[#E8DED0]">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2">
+                <span className="text-[#B88932] text-xs">◆</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B88932]">
+                  ABOUT MCU CREATIONS
+                </span>
               </div>
 
-              <p className="text-sm text-[#75695C] leading-relaxed">
-                CODISSIA is well known for organizing industrial exhibitions and trade fairs, bringing together exhibitors and visitors from different sectors. Its exhibition infrastructure provides a professional environment for businesses to showcase products, discover new technologies, build partnerships, and explore new market opportunities.
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#3A2A1E] leading-tight">
+                Creating Experiences<br />
+                <span className="text-[#B88932]">With Purpose.</span>
+              </h2>
+
+              <p className="text-base text-[#75695C] leading-relaxed">
+                MCU (Mentor Crew Units) Creations is a Coimbatore-based startup founded in 2026, focused on event management and creating meaningful experiences for businesses, organizations and communities.
               </p>
 
-              <div className="pt-2 text-[11px] uppercase font-semibold tracking-wider text-[#B88932] flex items-center gap-2">
-                <span>Premier Regional Trade Venue</span>
-                <span className="h-1 w-1 rounded-full bg-[#B88932]" />
-                <span>Coimbatore</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="p-5 rounded-2xl bg-white border border-[#E8DED0] space-y-2">
+                  <div className="flex items-center gap-2 text-[#B88932]">
+                    <Compass className="h-4 w-4" />
+                    <h4 className="font-serif text-sm font-bold text-[#3A2A1E]">Thoughtful Planning</h4>
+                  </div>
+                  <p className="text-xs text-[#75695C] leading-relaxed">
+                    Meticulous spatial structuring, schedule design, and venue alignment for every occasion.
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-white border border-[#E8DED0] space-y-2">
+                  <div className="flex items-center gap-2 text-[#B88932]">
+                    <ShieldCheck className="h-4 w-4" />
+                    <h4 className="font-serif text-sm font-bold text-[#3A2A1E]">Professional Execution</h4>
+                  </div>
+                  <p className="text-xs text-[#75695C] leading-relaxed">
+                    Reliable on-ground management, clear communication, and dedicated event coordination.
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <Link href="/about">
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#B88932] hover:text-[#D4B06A] transition-colors">
+                    <span>Learn More About MCU Creations</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </Link>
               </div>
             </div>
 
-            {/* Block 2: ABOUT MCU */}
-            <div className="rounded-3xl border border-[#E8DED0] bg-[#FCFBF8] p-8 sm:p-10 space-y-5 shadow-[0_8px_24px_rgba(43,33,24,0.02)] transition-all hover:border-[#B88932]">
-              <div className="flex items-center justify-between pb-4 border-b border-[#E8DED0]">
-                <div className="space-y-0.5">
-                  <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#B88932] font-mono">
-                    MANAGEMENT COMPANY
+            {/* Right Editorial Info Card */}
+            <div className="lg:col-span-5">
+              <div className="rounded-3xl border border-[#E8DED0] bg-white p-8 sm:p-10 space-y-6 shadow-[0_12px_32px_rgba(43,33,24,0.03)]">
+                <div className="space-y-2 pb-4 border-b border-[#E8DED0]">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#B88932]">
+                    COMPANY OVERVIEW
                   </span>
-                  <h3 className="font-serif text-2xl font-bold text-[#3A2A1E]">
-                    About MCU
+                  <h3 className="font-serif text-xl font-bold text-[#3A2A1E]">
+                    Built on Clarity & Dedication
                   </h3>
                 </div>
-                <Users className="h-6 w-6 text-[#B88932]/70 shrink-0" />
-              </div>
 
-              <p className="text-sm text-[#75695C] leading-relaxed">
-                Mentor Crew Units is an emerging Expo & Exhibition Management Company focused on creating professional, engaging, and business-driven exhibitions. We bring brands, manufacturers, entrepreneurs, businesses, and customers together through well-planned exhibitions and trade events.
-              </p>
+                <div className="space-y-4 text-xs sm:text-sm text-[#75695C]">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-[#B88932] shrink-0 mt-0.5" />
+                    <span>Founded in 2026 in Coimbatore, Tamil Nadu</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-[#B88932] shrink-0 mt-0.5" />
+                    <span>Pure focus on professional event management & coordination</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-[#B88932] shrink-0 mt-0.5" />
+                    <span>Committed to transparent collaboration and attendee experience</span>
+                  </div>
+                </div>
 
-              <div className="pt-2 text-[11px] uppercase font-semibold tracking-wider text-[#B88932] flex items-center gap-2">
-                <span>MCU Creations</span>
-                <span className="h-1 w-1 rounded-full bg-[#B88932]" />
-                <span>Mentor Crew Units</span>
+                <div className="pt-4 border-t border-[#E8DED0] flex items-center justify-between text-xs text-[#75695C]">
+                  <span>Office: Coimbatore, India</span>
+                  <span className="font-mono font-bold text-[#2B2118]">7010377731</span>
+                </div>
               </div>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* ============================================================ */}
-      {/* 3. WHAT WE DO SECTION (#what-we-do)                         */}
-      {/* ============================================================ */}
-      <Section id="what-we-do" spacing="lg" className="bg-[#FCFBF8] border-b border-[#E8DED0]">
-        <Container size="lg" className="space-y-12">
-          {/* Header Row */}
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-3">
-              <span className="font-mono text-xs font-semibold text-[#B88932]">03</span>
-              <span className="text-[#D4B06A]/60 text-xs">/</span>
-              <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#B88932]">
-                WHAT WE DO
+      {/* 4. EVENT MANAGEMENT SECTION (Central Business Focus) */}
+      <Section spacing="lg" className="bg-[#FCFBF8] border-b border-[#E8DED0]">
+        <Container className="space-y-16">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center justify-center gap-2">
+              <span className="text-[#B88932] text-xs">◆</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B88932]">
+                EVENT MANAGEMENT
               </span>
-              <div className="h-px w-8 bg-[#D4B06A]/60" />
+              <span className="text-[#B88932] text-xs">◆</span>
             </div>
-
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#3A2A1E] leading-tight">
-              End-to-end <br />
-              <span className="italic font-normal text-[#B88932]">event management.</span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#3A2A1E] tracking-tight leading-tight">
+              Our Core Capabilities
             </h2>
-
-            <p className="text-sm sm:text-base text-[#75695C] leading-relaxed">
-              From concept to execution, we handle every detail so you can focus on what truly matters.
+            <p className="text-sm sm:text-base text-[#75695C] font-normal leading-relaxed max-w-2xl mx-auto">
+              From thoughtful planning to on-ground execution, we focus on creating well-organized and meaningful event experiences.
             </p>
           </div>
 
-          {/* 4 Spacious Editorial Rows */}
-          <div className="space-y-0 rounded-3xl border border-[#E8DED0] bg-white overflow-hidden shadow-[0_12px_32px_rgba(43,33,24,0.03)] divide-y divide-[#E8DED0]">
-            {/* Row 01 */}
-            <div className="p-8 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors hover:bg-[#FCFBF8]/80 group">
-              <div className="flex items-start sm:items-center gap-6">
-                <span className="font-serif text-3xl sm:text-4xl font-light text-[#D4B06A] group-hover:text-[#B88932] transition-colors">
-                  01
-                </span>
-                <div className="h-10 w-px bg-[#E8DED0] hidden sm:block" />
-                <div className="space-y-1">
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3A2A1E]">
-                    Concept & Planning
+          {/* 3 Editorial Pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Block 01 */}
+            <div className="luxury-card p-8 sm:p-9 flex flex-col justify-between group">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-[#E8DED0]">
+                  <span className="font-serif text-3xl font-light text-[#D4B06A]">
+                    01
+                  </span>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B88932]">
+                    MANAGEMENT
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="font-serif text-2xl font-bold text-[#3A2A1E] group-hover:text-[#B88932] transition-colors">
+                    Event Management
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#75695C]">
-                    Turning ideas into well-planned, meaningful events.
+                  <p className="text-xs sm:text-sm text-[#75695C] leading-relaxed">
+                    Thoughtful planning. Precise coordination. Memorable execution. Complete end-to-end management of your gathering.
                   </p>
                 </div>
               </div>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B88932] shrink-0 self-start md:self-auto">
-                Blueprint & Strategy
-              </span>
+
+              <div className="pt-6 mt-6 border-t border-[#E8DED0]">
+                <Link href="/services">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#B88932] group-hover:text-[#D4B06A] transition-colors">
+                    <span>Explore Scope</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </Link>
+              </div>
             </div>
 
-            {/* Row 02 */}
-            <div className="p-8 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors hover:bg-[#FCFBF8]/80 group">
-              <div className="flex items-start sm:items-center gap-6">
-                <span className="font-serif text-3xl sm:text-4xl font-light text-[#D4B06A] group-hover:text-[#B88932] transition-colors">
-                  02
-                </span>
-                <div className="h-10 w-px bg-[#E8DED0] hidden sm:block" />
-                <div className="space-y-1">
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3A2A1E]">
-                    Coordination
+            {/* Block 02 */}
+            <div className="luxury-card p-8 sm:p-9 flex flex-col justify-between group">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-[#E8DED0]">
+                  <span className="font-serif text-3xl font-light text-[#D4B06A]">
+                    02
+                  </span>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B88932]">
+                    PLANNING
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="font-serif text-2xl font-bold text-[#3A2A1E] group-hover:text-[#B88932] transition-colors">
+                    Event Planning & Logistics
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#75695C]">
-                    Managing venues, vendors and every moving part.
+                  <p className="text-xs sm:text-sm text-[#75695C] leading-relaxed">
+                    Concept → Planning → Execution. Venue coordination, floor plan layouts, vendor alignment, and timeline scheduling.
                   </p>
                 </div>
               </div>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B88932] shrink-0 self-start md:self-auto">
-                Venues & Logistics
-              </span>
-            </div>
 
-            {/* Row 03 */}
-            <div className="p-8 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors hover:bg-[#FCFBF8]/80 group">
-              <div className="flex items-start sm:items-center gap-6">
-                <span className="font-serif text-3xl sm:text-4xl font-light text-[#D4B06A] group-hover:text-[#B88932] transition-colors">
-                  03
-                </span>
-                <div className="h-10 w-px bg-[#E8DED0] hidden sm:block" />
-                <div className="space-y-1">
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3A2A1E]">
-                    On-Ground Management
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#75695C]">
-                    Flawless execution with precision and care.
-                  </p>
-                </div>
+              <div className="pt-6 mt-6 border-t border-[#E8DED0]">
+                <Link href="/services">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#B88932] group-hover:text-[#D4B06A] transition-colors">
+                    <span>Explore Scope</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </Link>
               </div>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B88932] shrink-0 self-start md:self-auto">
-                Live Supervision
-              </span>
             </div>
 
-            {/* Row 04 */}
-            <div className="p-8 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors hover:bg-[#FCFBF8]/80 group">
-              <div className="flex items-start sm:items-center gap-6">
-                <span className="font-serif text-3xl sm:text-4xl font-light text-[#D4B06A] group-hover:text-[#B88932] transition-colors">
-                  04
-                </span>
-                <div className="h-10 w-px bg-[#E8DED0] hidden sm:block" />
-                <div className="space-y-1">
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3A2A1E]">
+            {/* Block 03 */}
+            <div className="luxury-card p-8 sm:p-9 flex flex-col justify-between group">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-[#E8DED0]">
+                  <span className="font-serif text-3xl font-light text-[#D4B06A]">
+                    03
+                  </span>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B88932]">
+                    EXPERIENCE
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="font-serif text-2xl font-bold text-[#3A2A1E] group-hover:text-[#B88932] transition-colors">
                     Guest Experience
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#75695C]">
-                    Creating seamless and memorable experiences.
+                  <p className="text-xs sm:text-sm text-[#75695C] leading-relaxed">
+                    Creating meaningful experiences for every guest through smooth registration, on-ground assistance, and hospitality.
                   </p>
                 </div>
               </div>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B88932] shrink-0 self-start md:self-auto">
-                Hospitality & Flow
-              </span>
+
+              <div className="pt-6 mt-6 border-t border-[#E8DED0]">
+                <Link href="/services">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#B88932] group-hover:text-[#D4B06A] transition-colors">
+                    <span>Explore Scope</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Capabilities Grid */}
+          <div className="rounded-3xl border border-[#E8DED0] bg-white p-8 sm:p-12 space-y-8 shadow-[0_8px_28px_rgba(43,33,24,0.02)]">
+            <div className="text-center max-w-xl mx-auto space-y-2">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3A2A1E]">
+                Genuine Event Capabilities
+              </h3>
+              <p className="text-xs text-[#75695C]">
+                Our capabilities are structured to ensure every aspect of your event is professionally managed.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+              <div className="p-4 rounded-xl bg-[#FCFBF8] border border-[#E8DED0] space-y-1">
+                <span className="font-serif text-xs font-bold text-[#3A2A1E] block">Concept & Planning</span>
+                <span className="text-[10px] text-[#75695C]">Ideation & Roadmap</span>
+              </div>
+              <div className="p-4 rounded-xl bg-[#FCFBF8] border border-[#E8DED0] space-y-1">
+                <span className="font-serif text-xs font-bold text-[#3A2A1E] block">Event Coordination</span>
+                <span className="text-[10px] text-[#75695C]">Timeline & Agenda</span>
+              </div>
+              <div className="p-4 rounded-xl bg-[#FCFBF8] border border-[#E8DED0] space-y-1">
+                <span className="font-serif text-xs font-bold text-[#3A2A1E] block">Venue & Vendors</span>
+                <span className="text-[10px] text-[#75695C]">Layout & Tech Setup</span>
+              </div>
+              <div className="p-4 rounded-xl bg-[#FCFBF8] border border-[#E8DED0] space-y-1">
+                <span className="font-serif text-xs font-bold text-[#3A2A1E] block">Branding & Setup</span>
+                <span className="text-[10px] text-[#75695C]">Stage & Signage</span>
+              </div>
+              <div className="p-4 rounded-xl bg-[#FCFBF8] border border-[#E8DED0] space-y-1">
+                <span className="font-serif text-xs font-bold text-[#3A2A1E] block">On-ground Operations</span>
+                <span className="text-[10px] text-[#75695C]">Live Oversight</span>
+              </div>
+              <div className="p-4 rounded-xl bg-[#FCFBF8] border border-[#E8DED0] space-y-1">
+                <span className="font-serif text-xs font-bold text-[#3A2A1E] block">Guest Experience</span>
+                <span className="text-[10px] text-[#75695C]">Reception & Badges</span>
+              </div>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* ============================================================ */}
-      {/* 4. UPCOMING EVENT SECTION (#upcoming-event)                 */}
-      {/* ============================================================ */}
-      <Section id="upcoming-event" spacing="lg" className="bg-white border-b border-[#E8DED0]">
-        <Container size="lg">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left: Event Visual Graphic */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-3xl border border-[#E8DED0] bg-[#FCFBF8] p-4 sm:p-6 shadow-[0_16px_40px_rgba(43,33,24,0.04)] overflow-hidden group">
-                <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden shadow-sm border border-[#E8DED0] bg-white">
-                  <Image
-                    src="/images/one-zone-brochure-p1.jpg"
-                    alt="One Zone 2K26 - CODISSIA Hall B, Coimbatore"
-                    fill
-                    className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.02]"
-                  />
-                </div>
+      {/* 5. UPCOMING EVENTS SECTION (Typography-Driven Cards) */}
+      <Section spacing="lg" className="bg-[#FCFBF8] border-b border-[#E8DED0]">
+        <Container className="space-y-12">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2">
+                <span className="text-[#B88932] text-xs">◆</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B88932]">
+                  CALENDAR
+                </span>
               </div>
+              <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#3A2A1E] tracking-tight">
+                Upcoming Events
+              </h2>
+              <p className="text-sm text-[#75695C]">
+                Explore upcoming business gatherings, expos, and conclaves organized by MCU Creations.
+              </p>
             </div>
 
-            {/* Right: Editorial Event Overview */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-3">
-                <span className="font-mono text-xs font-semibold text-[#B88932]">04</span>
-                <span className="text-[#D4B06A]/60 text-xs">/</span>
-                <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#B88932]">
-                  UPCOMING EVENT
+            <Link href="/events">
+              <button
+                type="button"
+                className="btn-luxury-secondary rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] shrink-0 flex items-center gap-2"
+              >
+                <span>View All Events</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </button>
+            </Link>
+          </div>
+
+          <EventGrid
+            events={upcomingEvents}
+            emptyTitle="No Upcoming Events Currently Listed"
+            emptyDescription="New events will be published soon. Stay tuned or contact our team for more information."
+          />
+        </Container>
+      </Section>
+
+      {/* 6. WHY MCU CREATIONS (Principles Focus) */}
+      <Section spacing="lg" className="bg-[#FCFBF8] border-b border-[#E8DED0]">
+        <Container className="space-y-14">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center justify-center gap-2">
+              <span className="text-[#B88932] text-xs">◆</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B88932]">
+                WHY MCU CREATIONS
+              </span>
+              <span className="text-[#B88932] text-xs">◆</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#3A2A1E] tracking-tight leading-tight">
+              Our Commitment & Approach
+            </h2>
+            <p className="text-sm sm:text-base text-[#75695C] font-normal leading-relaxed">
+              We approach every event with dedication, clear communication, and attention to detail.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Principle 01 */}
+            <div className="luxury-card p-7 space-y-4">
+              <span className="font-serif text-2xl font-light text-[#D4B06A]">
+                01
+              </span>
+              <h4 className="font-serif text-lg font-bold text-[#3A2A1E]">
+                Thoughtful Planning
+              </h4>
+              <p className="text-xs text-[#75695C] leading-relaxed">
+                Structured timeline creation, stage layouts, and contingency planning to keep every detail on track.
+              </p>
+            </div>
+
+            {/* Principle 02 */}
+            <div className="luxury-card p-7 space-y-4">
+              <span className="font-serif text-2xl font-light text-[#D4B06A]">
+                02
+              </span>
+              <h4 className="font-serif text-lg font-bold text-[#3A2A1E]">
+                Attention to Detail
+              </h4>
+              <p className="text-xs text-[#75695C] leading-relaxed">
+                From venue signage to guest reception desks, we focus on every touchpoint of attendee experience.
+              </p>
+            </div>
+
+            {/* Principle 03 */}
+            <div className="luxury-card p-7 space-y-4">
+              <span className="font-serif text-2xl font-light text-[#D4B06A]">
+                03
+              </span>
+              <h4 className="font-serif text-lg font-bold text-[#3A2A1E]">
+                Creative Approach
+              </h4>
+              <p className="text-xs text-[#75695C] leading-relaxed">
+                Crafting memorable moments and purposeful environments that resonate with delegates and partners.
+              </p>
+            </div>
+
+            {/* Principle 04 */}
+            <div className="luxury-card p-7 space-y-4">
+              <span className="font-serif text-2xl font-light text-[#D4B06A]">
+                04
+              </span>
+              <h4 className="font-serif text-lg font-bold text-[#3A2A1E]">
+                Professional Execution
+              </h4>
+              <p className="text-xs text-[#75695C] leading-relaxed">
+                Prompt coordination, responsive on-site management, and reliable startup dedication.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 7. CONTACT CTA SECTION — Spacious, Minimal & Refined */}
+      <Section spacing="lg" className="bg-[#FCFBF8]">
+        <Container>
+          <div className="rounded-3xl border border-[#E8DED0] bg-white p-10 sm:p-16 lg:p-20 text-center space-y-6 shadow-[0_16px_40px_rgba(43,33,24,0.03)] relative overflow-hidden">
+            {/* Subtle Abstract Ring Accent */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full border border-[#D4B06A]/15 pointer-events-none" />
+
+            <div className="space-y-4 max-w-2xl mx-auto relative z-10">
+              <div className="inline-flex items-center gap-2">
+                <span className="text-[#B88932] text-xs">◆</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B88932]">
+                  LET'S CREATE SOMETHING MEANINGFUL
                 </span>
-                <div className="h-px w-8 bg-[#D4B06A]/60" />
+                <span className="text-[#B88932] text-xs">◆</span>
               </div>
 
-              <div className="space-y-2">
-                <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#3A2A1E] leading-tight">
-                  One Zone 2K26
-                </h2>
-                <p className="text-xs uppercase tracking-[0.2em] font-semibold text-[#B88932]">
-                  EXPO · TRADE SHOW · BUSINESS EVENTS
-                </p>
-              </div>
+              <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#3A2A1E] leading-tight">
+                Have an event in mind?
+              </h3>
 
-              {/* Event Metadata Chips */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-2">
-                <div className="p-4 rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] space-y-1">
-                  <div className="flex items-center gap-2 text-[#B88932]">
-                    <Calendar className="h-4 w-4" />
-                    <span className="text-[10px] uppercase font-bold tracking-wider">EVENT DATES</span>
-                  </div>
-                  <p className="font-serif text-sm sm:text-base font-bold text-[#3A2A1E]">
-                    30 & 31 October · 1 November 2026
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] space-y-1">
-                  <div className="flex items-center gap-2 text-[#B88932]">
-                    <MapPin className="h-4 w-4" />
-                    <span className="text-[10px] uppercase font-bold tracking-wider">OFFICIAL VENUE</span>
-                  </div>
-                  <p className="font-serif text-sm sm:text-base font-bold text-[#3A2A1E]">
-                    CODISSIA Hall B · Coimbatore
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-sm text-[#75695C] leading-relaxed">
-                A business-focused expo and trade show bringing brands, businesses, manufacturers, entrepreneurs and customers together.
+              <p className="text-sm sm:text-base text-[#75695C] leading-relaxed">
+                Let's talk about how we can bring it to life with thoughtful planning and professional execution.
               </p>
 
-              <div className="pt-2 flex flex-wrap gap-4">
-                <button
-                  type="button"
-                  onClick={() => scrollTo('event-details')}
-                  className="btn-luxury-primary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2 transition-all hover:shadow-md"
-                >
-                  <span>View Event Details</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setFloorPlanOpen(true)}
-                  className="btn-luxury-secondary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2 transition-all"
-                >
-                  <Maximize2 className="h-3.5 w-3.5 text-[#B88932]" />
-                  <span>View Floor Plan</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* ============================================================ */}
-      {/* 5. EVENT DETAILS SECTION (#event-details)                   */}
-      {/* ============================================================ */}
-      <Section id="event-details" spacing="lg" className="bg-[#FCFBF8] border-b border-[#E8DED0]">
-        <Container size="lg" className="space-y-14">
-          {/* Header */}
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="inline-flex items-center justify-center gap-3">
-              <span className="font-mono text-xs font-semibold text-[#B88932]">05</span>
-              <span className="text-[#D4B06A]/60 text-xs">/</span>
-              <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#B88932]">
-                ONE ZONE 2K26 · EVENT DETAILS
-              </span>
-              <div className="h-px w-8 bg-[#D4B06A]/60" />
-            </div>
-
-            <h2 className="font-serif text-3xl sm:text-5xl font-normal text-[#3A2A1E]">
-              Comprehensive Event & <br />
-              <span className="italic font-normal text-[#B88932]">Exhibition Scope.</span>
-            </h2>
-
-            <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-[#75695C]">
-              30 & 31 OCTOBER · 1 NOVEMBER 2026 · CODISSIA HALL B, COIMBATORE
-            </p>
-          </div>
-
-          {/* 4 Expo Highlight Counters */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E8DED0] text-center space-y-1.5 shadow-sm">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#B88932] block">
-                200+
-              </span>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#3A2A1E] block">
-                Commercial Stalls
-              </span>
-              <span className="text-[11px] text-[#75695C] block">Hall B Layout</span>
-            </div>
-
-            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E8DED0] text-center space-y-1.5 shadow-sm">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#B88932] block">
-                100+
-              </span>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#3A2A1E] block">
-                Regional Brands
-              </span>
-              <span className="text-[11px] text-[#75695C] block">Multi-Sector Platform</span>
-            </div>
-
-            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E8DED0] text-center space-y-1.5 shadow-sm">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#B88932] block">
-                B2B & B2C
-              </span>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#3A2A1E] block">
-                Networking
-              </span>
-              <span className="text-[11px] text-[#75695C] block">Direct Deal Flow</span>
-            </div>
-
-            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E8DED0] text-center space-y-1.5 shadow-sm">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#B88932] block">
-                Thousands
-              </span>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#3A2A1E] block">
-                Trade Visitors
-              </span>
-              <span className="text-[11px] text-[#75695C] block">Targeted Turnout</span>
-            </div>
-          </div>
-
-          {/* Large Ultra-Realistic Expo Showcase Image & Floor Plan Access */}
-          <div className="space-y-6">
-            <div className="rounded-3xl border border-[#E8DED0] bg-white p-4 sm:p-6 shadow-[0_16px_40px_rgba(43,33,24,0.04)] space-y-6">
-              <div className="relative aspect-[4/3] sm:aspect-[16/10] max-h-[580px] w-full rounded-2xl overflow-hidden border border-[#E8DED0] shadow-sm">
-                <Image
-                  src="/images/expo-crowd-showcase.jpg"
-                  alt="MCU Creations One Zone 2K26 Expo Exhibition Hall"
-                  fill
-                  priority
-                  className="object-cover object-top"
-                />
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-                <div className="space-y-1">
-                  <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#B88932] font-mono block">
-                    CODISSIA HALL B · ONE ZONE 2K26
-                  </span>
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3A2A1E]">
-                    Hall-B Exhibition Layout & Spatial Architecture
-                  </h3>
-                  <p className="text-xs text-[#75695C] max-w-xl">
-                    Explore the complete layout including Silver, Gold, Diamond, and Premium stall configurations, stage locations, entry/exit points, and food court zones.
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-3 shrink-0">
+              <div className="pt-4 flex flex-wrap justify-center gap-4">
+                <Link href="/contact">
                   <button
                     type="button"
-                    onClick={() => setFloorPlanOpen(true)}
-                    className="btn-luxury-primary rounded-full px-7 py-3 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2 transition-all hover:shadow-md"
+                    className="btn-luxury-primary rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] flex items-center gap-2"
                   >
-                    <Maximize2 className="h-3.5 w-3.5" />
-                    <span>View Floor Plan</span>
+                    <span>Get in Touch</span>
+                    <ArrowRight className="h-4 w-4" />
                   </button>
-
-                  <button
-                    type="button"
-                    onClick={() => scrollTo('contact')}
-                    className="btn-luxury-secondary rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] transition-all hover:shadow-sm"
-                  >
-                    <span>Book Stalls</span>
-                  </button>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
         </Container>
       </Section>
-
-      {/* ============================================================ */}
-      {/* 6. WHO CAN PARTICIPATE SECTION (#who-can-participate)        */}
-      {/* ============================================================ */}
-      <Section id="who-can-participate" spacing="lg" className="bg-white border-b border-[#E8DED0]">
-        <Container size="lg" className="space-y-12">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-3">
-              <span className="font-mono text-xs font-semibold text-[#B88932]">06</span>
-              <span className="text-[#D4B06A]/60 text-xs">/</span>
-              <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#B88932]">
-                EXHIBITOR CATEGORIES
-              </span>
-              <div className="h-px w-8 bg-[#D4B06A]/60" />
-            </div>
-
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#3A2A1E]">
-              Who Can Participate
-            </h2>
-
-            <p className="text-sm text-[#75695C] leading-relaxed">
-              One Zone 2K26 welcomes leading manufacturers, distributors, service providers, and brands across 19 major industry sectors.
-            </p>
-          </div>
-
-          {/* 19 Categories Grid with Thin Borders & Gold Accents */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 sm:gap-4">
-            {categories.map((cat, idx) => (
-              <div
-                key={cat}
-                className="p-4 sm:p-5 rounded-2xl border border-[#E8DED0] bg-[#FCFBF8] space-y-2 transition-all hover:border-[#B88932] hover:bg-white hover:shadow-[0_8px_20px_rgba(43,33,24,0.03)] group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] font-bold text-[#D4B06A] group-hover:text-[#B88932] transition-colors">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-                  <div className="h-1.5 w-1.5 rounded-full bg-[#E8DED0] group-hover:bg-[#B88932] transition-colors" />
-                </div>
-                <h3 className="font-serif text-sm font-bold text-[#3A2A1E] leading-snug">
-                  {cat}
-                </h3>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* ============================================================ */}
-      {/* ============================================================ */}
-      {/* 7. CONTACT SECTION (#contact)                                */}
-      {/* ============================================================ */}
-      <Section id="contact" spacing="lg" className="bg-[#FCFBF8]">
-        <Container size="lg" className="space-y-12 sm:space-y-16">
-          {/* Header */}
-          <div className="text-center space-y-4 max-w-2xl mx-auto">
-            <div className="inline-flex items-center justify-center gap-3">
-              <span className="font-mono text-xs font-semibold text-[#B88932]">07</span>
-              <span className="text-[#D4B06A]/60 text-xs">/</span>
-              <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#B88932]">
-                GET IN TOUCH
-              </span>
-              <div className="h-px w-8 bg-[#D4B06A]/60" />
-            </div>
-
-            <h2 className="font-serif text-3xl sm:text-5xl font-normal text-[#3A2A1E] leading-tight">
-              Let's <span className="italic font-normal text-[#B88932]">connect.</span>
-            </h2>
-
-            <p className="text-sm sm:text-base text-[#75695C] leading-relaxed">
-              Have an enquiry, want to participate in One Zone Expo, or need more information? Reach out to us directly.
-            </p>
-          </div>
-
-          {/* Three Prominent Action Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-            {/* Card A: Email */}
-            <a
-              href="mailto:mcuevents26@gmail.com"
-              className="group relative rounded-3xl border border-[#E8DED0] bg-white p-8 sm:p-10 flex flex-col justify-between items-center text-center space-y-6 shadow-[0_8px_30px_rgba(43,33,24,0.03)] hover:shadow-[0_16px_40px_rgba(43,33,24,0.08)] hover:border-[#B88932] transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
-            >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] text-[#B88932] group-hover:bg-[#B88932]/10 group-hover:border-[#B88932]/30 group-hover:scale-110 transition-all duration-300">
-                <Mail className="h-7 w-7" />
-              </div>
-
-              <div className="space-y-2 flex-1 flex flex-col justify-center">
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#B88932] font-mono">
-                  EMAIL SUPPORT
-                </span>
-                <h3 className="font-serif text-2xl font-bold text-[#3A2A1E] group-hover:text-[#B88932] transition-colors">
-                  EMAIL US
-                </h3>
-                <p className="text-xs text-[#75695C] pt-1">
-                  Send your requirements or questions
-                </p>
-                <p className="font-mono text-sm font-semibold text-[#2B2118] pt-1 break-all">
-                  mcuevents26@gmail.com
-                </p>
-              </div>
-
-              <div className="btn-luxury-primary w-full rounded-full py-3.5 px-6 text-xs font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2 transition-all">
-                <span>Send Email</span>
-                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </a>
-
-            {/* Card B: WhatsApp */}
-            <a
-              href="https://wa.me/917010377731?text=Hello%20MCU%20Creations%2C%20I%20would%20like%20to%20know%20more%20about%20One%20Zone%20Expo."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative rounded-3xl border border-[#E8DED0] bg-white p-8 sm:p-10 flex flex-col justify-between items-center text-center space-y-6 shadow-[0_8px_30px_rgba(43,33,24,0.03)] hover:shadow-[0_16px_40px_rgba(43,33,24,0.08)] hover:border-[#B88932] transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
-            >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] text-[#B88932] group-hover:bg-[#B88932]/10 group-hover:border-[#B88932]/30 group-hover:scale-110 transition-all duration-300">
-                <MessageCircle className="h-7 w-7" />
-              </div>
-
-              <div className="space-y-2 flex-1 flex flex-col justify-center">
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#B88932] font-mono">
-                  INSTANT CHAT
-                </span>
-                <h3 className="font-serif text-2xl font-bold text-[#3A2A1E] group-hover:text-[#B88932] transition-colors">
-                  WHATSAPP US
-                </h3>
-                <p className="text-xs text-[#75695C] pt-1">
-                  Quick response for event & stall enquiries
-                </p>
-                <p className="font-mono text-sm font-semibold text-[#2B2118] pt-1">
-                  +91 70103 77731
-                </p>
-              </div>
-
-              <div className="btn-luxury-primary w-full rounded-full py-3.5 px-6 text-xs font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2 transition-all">
-                <span>Open WhatsApp</span>
-                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </a>
-
-            {/* Card C: Call */}
-            <a
-              href="tel:7010377731"
-              className="group relative rounded-3xl border border-[#E8DED0] bg-white p-8 sm:p-10 flex flex-col justify-between items-center text-center space-y-6 shadow-[0_8px_30px_rgba(43,33,24,0.03)] hover:shadow-[0_16px_40px_rgba(43,33,24,0.08)] hover:border-[#B88932] transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
-            >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FCFBF8] border border-[#E8DED0] text-[#B88932] group-hover:bg-[#B88932]/10 group-hover:border-[#B88932]/30 group-hover:scale-110 transition-all duration-300">
-                <Phone className="h-7 w-7" />
-              </div>
-
-              <div className="space-y-2 flex-1 flex flex-col justify-center">
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#B88932] font-mono">
-                  DIRECT PHONE
-                </span>
-                <h3 className="font-serif text-2xl font-bold text-[#3A2A1E] group-hover:text-[#B88932] transition-colors">
-                  CALL US
-                </h3>
-                <p className="text-xs text-[#75695C] pt-1">
-                  Speak directly with our executive desk
-                </p>
-                <p className="font-mono text-sm font-semibold text-[#2B2118] pt-1">
-                  +91 70103 77731
-                </p>
-              </div>
-
-              <div className="btn-luxury-primary w-full rounded-full py-3.5 px-6 text-xs font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2 transition-all">
-                <span>Call Now</span>
-                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </a>
-          </div>
-        </Container>
-      </Section>
-
-      {/* ============================================================ */}
-      {/* 8. 5-SECOND DELAYED UPCOMING EVENT POPUP                     */}
-      {/* ============================================================ */}
-      <UpcomingEventNotification />
-
-      {/* ============================================================ */}
-      {/* 9. HALL-B FLOOR PLAN MODAL LIGHTBOX                          */}
-      {/* ============================================================ */}
-      <FloorPlanModal
-        isOpen={floorPlanOpen}
-        onClose={() => setFloorPlanOpen(false)}
-      />
     </div>
   );
 }
