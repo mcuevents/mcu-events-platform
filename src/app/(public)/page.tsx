@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Container, Section } from '@/components/ui';
 import { EventGrid } from '@/components/events/EventGrid';
+import { OnezoneCountdown } from '@/components/home/OnezoneCountdown';
 import { getUpcomingEvents } from '@/services/events.service';
 import {
   Calendar,
@@ -135,6 +136,9 @@ export default async function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* ONEZONE 2K26 LUXURY LIVE COUNTDOWN SECTION */}
+      <OnezoneCountdown />
 
       {/* 2. WHAT WE DO SECTION (Immediate 4-Column Refined Bar) */}
       <section className="bg-white border-b border-[#E8DED0] py-12 lg:py-16">
